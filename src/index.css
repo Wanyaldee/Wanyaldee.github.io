@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+/* src/theme/colors.ts と同じ値（ワドルディ由来の配色） */
+@theme {
+  --color-cream: #fff7ec;
+  --color-card: #ffffff;
+  --color-surface: #fff3e2;
+  --color-orange: #f6923f;
+  --color-orange-text: #b4520f;
+  --color-ink: #3b2416;
+  --color-ink-sub: #6b4c38;
+  --color-ink-muted: #8a6a55;
+  --font-sans: 'Noto Sans JP', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-cream font-sans text-ink antialiased;
+}
