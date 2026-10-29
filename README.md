@@ -2,7 +2,6 @@
 
 岡田 昊也（Koya Okada / わにゃ / Wanyaldee）のポートフォリオ。公開先: <https://wanyaldee.github.io/>
 
-- 設計書: `docs/superpowers/specs/2026-10-30-portfolio-design.md`
 - 文言はすべて `src/content/` にある（コンポーネントは描画のみ）
 
 ## Tech stack
