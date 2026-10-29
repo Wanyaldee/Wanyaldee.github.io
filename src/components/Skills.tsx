@@ -11,7 +11,7 @@ export function Skills({ skills }: Props) {
         {skills.map((category) => (
           <div
             key={category.name}
-            className="rounded-2xl bg-card p-5 shadow-sm"
+            className="panel p-5 transition-colors hover:border-orange"
           >
             <h3 className="font-bold">{category.name}</h3>
             <ul className="mt-3 space-y-2 text-sm">

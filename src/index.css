@@ -26,3 +26,28 @@ html {
 body {
   @apply bg-cream font-sans text-ink antialiased;
 }
+
+/* 章デザイン（event.awajiempire.net の SectionHead / kosatsu をこのサイトの配色に置き換えたもの） */
+
+@layer components {
+  /* 見出し下の刷毛線 */
+  .brush-rule {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-orange),
+      var(--color-orange-text) 70%,
+      transparent
+    );
+    border-radius: 2px;
+  }
+
+  /* 罫で囲んだパネル */
+  .panel {
+    background:
+      linear-gradient(180deg, rgba(246, 146, 63, 0.05), rgba(246, 146, 63, 0)),
+      var(--color-card);
+    border: 1px solid rgba(180, 82, 15, 0.22);
+    border-radius: 2px;
+  }
+}

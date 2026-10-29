@@ -17,7 +17,7 @@ export function Vision({ vision, contacts }: Props) {
           {p}
         </p>
       ))}
-      <div className="mt-8 rounded-2xl bg-surface p-5">
+      <div className="panel mt-8 p-5">
         <p className="mb-3 text-xs font-bold tracking-[0.15em] text-orange-text">
           CONTACT
         </p>
