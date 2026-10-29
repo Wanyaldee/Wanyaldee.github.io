@@ -3,15 +3,22 @@ import { ExternalLink } from './ExternalLink.tsx'
 
 type Props = { contacts: Link[] }
 
+const MAILTO = 'mailto:'
+
+// メールはメールソフトがなくても読めてコピーできるよう、アドレスも表示する
 export function ContactList({ contacts }: Props) {
   return (
     <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
       {contacts.map((link) => (
-        <li key={link.href}>
+        <li key={link.href} className="[overflow-wrap:anywhere]">
           <ExternalLink
             link={link}
             className="text-orange-text underline-offset-4 hover:underline"
-          />
+          >
+            {link.href.startsWith(MAILTO)
+              ? `${link.label}: ${link.href.slice(MAILTO.length)}`
+              : link.label}
+          </ExternalLink>
         </li>
       ))}
     </ul>

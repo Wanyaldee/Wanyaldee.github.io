@@ -8,6 +8,11 @@ test('主要セクションと名前が表示され、横にはみ出さない',
   }
   await expect(page.getByText('岡田 昊也').first()).toBeVisible()
 
+  // メールソフトのない PC でも読めて、コピーできるようにアドレスを表示する
+  for (const address of ['gooya.3322@gmail.com', 'k-okada@jqca.org']) {
+    await expect(page.getByText(address).first()).toBeVisible()
+  }
+
   const fitsWidth = await page.evaluate(
     () =>
       document.documentElement.scrollWidth <=
