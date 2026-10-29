@@ -1,0 +1,59 @@
+import { PENDING } from './pending.ts'
+import type { Case } from './types.ts'
+
+const AWAJI_AGENT_REPO =
+  'https://github.com/Awaji-Empire-Technical-Department/Awaji-Empire-Agent'
+
+export const cases: Case[] = [
+  {
+    kind: 'timeline',
+    id: 'awaji-agent',
+    number: '01',
+    role: 'プロジェクトリード / インフラ設計・運用',
+    title: 'Awaji-Empire-Agent & 700人規模コミュニティ基盤',
+    background:
+      'イベント直前に、外部ドメイン事業者の重大インシデント兆候を察知した。',
+    decision:
+      'チームと「イベントの安全な完遂」という目的を再共有し、合意を取ったうえで Cloudflare Registrar への移管を即断した。',
+    reflection: '最初は独力で抱え込もうとした。目的の共有を先にすべきだった。',
+    result:
+      'ダウンタイムを最小に抑えて完遂。利用者から「ありがとう」の声をもらった。',
+    links: [
+      { label: 'GitHub リポジトリ', href: AWAJI_AGENT_REPO },
+      // 設計意図が伝わるコミット（最大3件）はユーザーが選ぶ。決まるまでコミット一覧で代用
+      { label: PENDING, href: `${AWAJI_AGENT_REPO}/commits/main` },
+    ],
+  },
+  {
+    kind: 'timeline',
+    id: 'offevent-lp',
+    number: '02',
+    role: 'LP制作担当',
+    title: '淡路帝国オフイベント（2027.3.6 ラピスホール神戸）告知LP',
+    background:
+      '着席160〜200名規模のオフイベント。告知LPと並行して、当日運営システムも計画されていた。',
+    decision:
+      '運営システムの設計方針で相方と意見が衝突した。運営側から、当日に使いこなせるか、スタッフの訓練が必要になる、という理由で不要と判断され、思い切って使わないと決めた。',
+    reflection:
+      '作る前に「誰が使うのか」「誰のために必要なのか」「何が求められているのか」を聞き取れていなかった。',
+    result:
+      '開発前にビジョンと需要を聞き取り、仲間と共有してから手を動かす姿勢を身につけた。LPは公開・運用中。',
+    bridge:
+      'CASE 01 の「目的の再共有」と同じく、作る前に北極星をそろえることの大切さを学んだ。',
+    // リポジトリは非公開なので GitHub へはリンクしない
+    links: [{ label: 'イベントLP', href: 'https://event.awajiempire.net/' }],
+  },
+  {
+    kind: 'nedo',
+    id: 'nedo',
+    number: '03',
+    team: 'チャイルドリーム',
+    theme:
+      '量子コンピュータによる双方向型動的教育教材・学習方針（能力測定のためのテスト問題含む）の機械生成',
+    role: '生成AI・図生成エンジンなど、問題作成に関わる実装を担当',
+    link: {
+      label: '書類審査通過者一覧（NEDO）',
+      href: 'https://qc-challenge.nedo.go.jp/season_2/docs/list_of_screened_applicants_20260831.pdf',
+    },
+  },
+]
