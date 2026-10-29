@@ -7,10 +7,13 @@ type Props = { profile: Profile; lead: string }
 export function About({ profile, lead }: Props) {
   return (
     <Section id="about" label="About" title="わたしについて">
-      <div className="flex justify-center">
-        <p className="vertical max-h-[24rem] text-base font-medium">{lead}</p>
-      </div>
-      <p className="mt-16 leading-loose text-ink-sub">{profile.statement}</p>
+      <p
+        data-lead
+        className="border-l-2 border-orange pl-5 text-xl leading-loose font-medium tracking-wider sm:text-2xl"
+      >
+        {lead}
+      </p>
+      <p className="mt-12 leading-loose text-ink-sub">{profile.statement}</p>
       <ul className="mt-10 space-y-4 border-t border-ink/15 pt-8 text-sm leading-relaxed">
         <li>
           <span className="block text-xs tracking-widest text-ink-muted">

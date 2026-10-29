@@ -29,8 +29,10 @@ test('主要セクションと名前が表示され、横にはみ出さない',
   await expect(header.locator(mail).first()).toBeVisible()
   await expect(page.locator(`#about ${mail}`)).toHaveCount(0)
 
-  // 「ありがとう」の一文は縦書きで主役として置く
-  await expect(page.locator('#about .vertical')).toContainText('ありがとう')
+  // 「ありがとう」の一文は横書きで主役として置く
+  const lead = page.locator('#about [data-lead]')
+  await expect(lead).toContainText('ありがとう')
+  await expect(lead).toHaveCSS('writing-mode', 'horizontal-tb')
 
   // アイコン（ビジュアル面）とクレジット
   const visual = page.locator('[data-visual] img[src="/avatar_all.jpg"]')
