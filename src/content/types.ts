@@ -21,8 +21,6 @@ export type Profile = {
   /** catchcopy のうち橙で強調する部分（catchcopy の末尾に含まれること） */
   catchcopyEmphasis: string
   statement: string
-  /** 原体験の一文。Vision の lead 直前に置く */
-  origin: string
   avatar: Avatar
   affiliations: Affiliation[]
   contacts: Link[]

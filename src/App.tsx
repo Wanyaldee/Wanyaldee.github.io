@@ -15,11 +15,7 @@ export default function App() {
         <Philosophy values={values} />
         <Cases cases={cases} />
         <Skills skills={skills} />
-        <Vision
-          vision={vision}
-          origin={profile.origin}
-          contacts={profile.contacts}
-        />
+        <Vision vision={vision} contacts={profile.contacts} />
       </main>
       <footer className="space-y-1 pt-8 text-center text-xs text-ink-muted">
         <p>

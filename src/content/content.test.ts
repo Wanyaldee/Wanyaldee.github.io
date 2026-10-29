@@ -149,3 +149,42 @@ describe('表記', () => {
     expect(JSON.stringify(content)).not.toContain('North Star')
   })
 })
+
+describe('文体', () => {
+  // 文章（名詞句ではないもの）はすべて です・ます 調で書く
+  function prose(c: Content): string[] {
+    const timeline = c.cases.flatMap((x) =>
+      x.kind === 'timeline'
+        ? [x.background, x.decision, x.reflection, x.result, x.bridge ?? '']
+        : [],
+    )
+    return [
+      c.profile.statement,
+      ...c.values.map((v) => v.body),
+      ...timeline,
+      ...c.skills.flatMap((s) => s.items.map((i) => i.principle)),
+      c.vision.lead,
+      ...c.vision.body,
+    ].filter((s) => s !== '')
+  }
+
+  it('すべての文が丁寧語で終わる', () => {
+    const sentences = prose(content)
+      .flatMap((p) => p.split('。'))
+      .map((s) => s.trim())
+      .filter((s) => s !== '')
+    const plain = sentences.filter(
+      (s) => !/(です|ます|ました|ません|でした|ましょう)」?$/.test(s),
+    )
+    expect(plain).toEqual([])
+  })
+})
+
+describe('vision', () => {
+  it('「ありがとう」の思いを主役にし、狙いすぎた一文は使わない', () => {
+    expect(content.vision.lead).toContain('ありがとう')
+    expect(JSON.stringify(content)).not.toContain(
+      '「やりたいこと」を「できる」',
+    )
+  })
+})
