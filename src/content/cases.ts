@@ -1,4 +1,3 @@
-import { PENDING } from './pending.ts'
 import type { Case } from './types.ts'
 
 const AWAJI_AGENT_REPO =
@@ -20,8 +19,19 @@ export const cases: Case[] = [
       'ダウンタイムを最小に抑えて完遂。利用者から「ありがとう」の声をもらった。',
     links: [
       { label: 'GitHub リポジトリ', href: AWAJI_AGENT_REPO },
-      // 設計意図が伝わるコミット（最大3件）はユーザーが選ぶ。決まるまでコミット一覧で代用
-      { label: PENDING, href: `${AWAJI_AGENT_REPO}/commits/main` },
+      // 設計意図が伝わるコミット（ユーザー選定）
+      {
+        label: 'ADR-030: レジストラの Cloudflare 移管',
+        href: `${AWAJI_AGENT_REPO}/commit/e94bb1e`,
+      },
+      {
+        label: '格納型XSS修正・署名鍵の必須化',
+        href: `${AWAJI_AGENT_REPO}/commit/b6a966d`,
+      },
+      {
+        label: 'Docker Compose で開発環境を再現',
+        href: `${AWAJI_AGENT_REPO}/commit/df9fff7`,
+      },
     ],
   },
   {

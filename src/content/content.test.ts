@@ -62,6 +62,19 @@ describe('cases', () => {
     expect(nedo.kind === 'nedo' && nedo.link.href).toBe(NEDO_PDF)
   })
 
+  it('CASE 01 は承認済みの3コミットへリンクする', () => {
+    const agent = findCase('awaji-agent')
+    if (agent.kind !== 'timeline') throw new Error('timeline expected')
+    const repo =
+      'https://github.com/Awaji-Empire-Technical-Department/Awaji-Empire-Agent'
+    expect(agent.links.map((l) => l.href)).toEqual([
+      repo,
+      `${repo}/commit/e94bb1e`,
+      `${repo}/commit/b6a966d`,
+      `${repo}/commit/df9fff7`,
+    ])
+  })
+
   it('オフイベントLPは非公開リポジトリへリンクせず、公開LPへリンクする', () => {
     const lp = findCase('offevent-lp')
     if (lp.kind !== 'timeline') throw new Error('timeline expected')

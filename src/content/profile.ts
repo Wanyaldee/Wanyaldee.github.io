@@ -1,4 +1,3 @@
-import { PENDING } from './pending.ts'
 import type { Profile } from './types.ts'
 
 export const profile: Profile = {
@@ -17,7 +16,7 @@ export const profile: Profile = {
   affiliations: [
     {
       ja: '香川高専 電気情報工学科',
-      en: `National Institute of Technology, Kagawa College, ${PENDING}`,
+      en: 'National Institute of Technology, Kagawa College, Department of Electrical and Computer Engineering',
     },
     {
       ja: '日本量子コンピューティング協会（JQCA）大阪支部所属',
