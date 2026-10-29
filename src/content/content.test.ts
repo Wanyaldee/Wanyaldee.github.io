@@ -10,7 +10,7 @@ function allLinks(c: Content): Link[] {
   const caseLinks = c.cases.flatMap((x) =>
     x.kind === 'timeline' ? x.links : [x.link],
   )
-  return [...c.profile.contacts, ...caseLinks]
+  return [...c.profile.contacts, c.profile.avatar.credit, ...caseLinks]
 }
 
 function findCase(id: string): Case {
@@ -28,6 +28,14 @@ describe('profile', () => {
       'https://x.com/Gooya3322',
       'https://www.instagram.com/gooya3322',
     ])
+  })
+})
+
+describe('avatar', () => {
+  it('アイコンは ᴸⁱʸ さんの作品としてクレジットされる', () => {
+    expect(content.profile.avatar.src).toBe('/avatar.jpg')
+    expect(content.profile.avatar.credit.href).toBe('https://x.com/zZ5lALiyp')
+    expect(content.profile.avatar.credit.label).toContain('ᴸⁱʸ')
   })
 })
 

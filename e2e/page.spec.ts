@@ -13,6 +13,23 @@ test('主要セクションと名前が表示され、横にはみ出さない',
     await expect(page.getByText(address).first()).toBeVisible()
   }
 
+  // 連絡先はヘッダーにあり、プロフィール帯の直後には置かない
+  const header = page.locator('#hero nav')
+  await expect(
+    header.locator('a[href="https://github.com/Wanyaldee"]'),
+  ).toBeVisible()
+  const mail = 'a[href="mailto:gooya.3322@gmail.com"]'
+  await expect(header.locator(mail)).toHaveCount(1)
+  await expect(page.locator(`#hero ${mail}`)).toHaveCount(1)
+
+  // アイコンとクレジット
+  await expect(
+    page.locator('#hero img[src="/avatar.jpg"]').first(),
+  ).toBeVisible()
+  await expect(
+    page.locator('footer a[href="https://x.com/zZ5lALiyp"]'),
+  ).toBeVisible()
+
   const fitsWidth = await page.evaluate(
     () =>
       document.documentElement.scrollWidth <=

@@ -3,6 +3,13 @@ export type Link = { label: string; href: string }
 
 export type Affiliation = { ja: string; en: string }
 
+export type Avatar = {
+  src: string
+  alt: string
+  /** 作者クレジット（フッターに表示） */
+  credit: Link
+}
+
 export type Profile = {
   nameJa: string
   nameKana: string
@@ -16,6 +23,7 @@ export type Profile = {
   statement: string
   /** 原体験の一文。Vision の lead 直前に置く */
   origin: string
+  avatar: Avatar
   affiliations: Affiliation[]
   contacts: Link[]
 }

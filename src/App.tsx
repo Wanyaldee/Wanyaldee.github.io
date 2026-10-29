@@ -1,4 +1,5 @@
 import { Cases } from './components/Cases.tsx'
+import { ExternalLink } from './components/ExternalLink.tsx'
 import { Hero } from './components/Hero.tsx'
 import { Philosophy } from './components/Philosophy.tsx'
 import { Skills } from './components/Skills.tsx'
@@ -20,8 +21,16 @@ export default function App() {
           contacts={profile.contacts}
         />
       </main>
-      <footer className="pt-8 text-center text-xs text-ink-muted">
-        © {profile.nameEn} ({profile.handle})
+      <footer className="space-y-1 pt-8 text-center text-xs text-ink-muted">
+        <p>
+          <ExternalLink
+            link={profile.avatar.credit}
+            className="underline-offset-4 hover:underline"
+          />
+        </p>
+        <p>
+          © {profile.nameEn} ({profile.handle})
+        </p>
       </footer>
     </div>
   )
