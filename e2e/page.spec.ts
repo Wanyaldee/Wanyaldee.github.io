@@ -47,6 +47,14 @@ test('主要セクションと名前が表示され、横にはみ出さない',
     page.locator('footer a[href="https://x.com/zZ5lALiyp"]'),
   ).toBeVisible()
 
+  // 装飾の縦線（左罫線）は使わない
+  const leftBorders = await page.evaluate(() =>
+    [...document.querySelectorAll('main *')]
+      .filter((el) => parseFloat(getComputedStyle(el).borderLeftWidth) > 0)
+      .map((el) => el.outerHTML.slice(0, 80)),
+  )
+  expect(leftBorders).toEqual([])
+
   const fitsWidth = await page.evaluate(
     () =>
       document.documentElement.scrollWidth <=

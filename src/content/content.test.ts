@@ -182,7 +182,9 @@ describe('文体', () => {
 
 describe('vision', () => {
   it('「ありがとう」の思いを主役にし、狙いすぎた一文は使わない', () => {
-    expect(content.vision.lead).toContain('ありがとう')
+    expect(content.vision.lead).toBe(
+      '技術の根っこにあるのは、ありがとうと言ってもらえたうれしさです。',
+    )
     expect(JSON.stringify(content)).not.toContain(
       '「やりたいこと」を「できる」',
     )

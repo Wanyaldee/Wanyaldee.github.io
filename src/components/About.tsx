@@ -9,7 +9,7 @@ export function About({ profile, lead }: Props) {
     <Section id="about" label="About" title="わたしについて">
       <p
         data-lead
-        className="border-l-2 border-orange pl-5 text-xl leading-loose font-medium tracking-wider sm:text-2xl"
+        className="text-xl leading-loose font-medium tracking-wider sm:text-2xl"
       >
         {lead}
       </p>

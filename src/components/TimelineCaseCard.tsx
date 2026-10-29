@@ -17,20 +17,18 @@ export function TimelineCaseCard({ item }: Props) {
   return (
     <article>
       <CaseHeader number={item.number} role={item.role} title={item.title} />
-      <ol className="mt-8 space-y-6 border-l border-orange pl-6">
+      <dl className="mt-8 space-y-6">
         {steps.map(([label, text]) => (
-          <li key={label} className="relative">
-            <span
-              aria-hidden="true"
-              className="absolute top-1.5 -left-[1.8rem] size-2 rounded-full bg-orange"
-            />
-            <p className="font-display text-lg text-orange-text italic">
+          <div key={label} className="sm:grid sm:grid-cols-[7rem_1fr] sm:gap-4">
+            <dt className="font-display text-lg text-orange-text italic">
               {label}
-            </p>
-            <p className="mt-1 text-sm leading-loose text-ink-sub">{text}</p>
-          </li>
+            </dt>
+            <dd className="mt-1 text-sm leading-loose text-ink-sub sm:mt-0.5">
+              {text}
+            </dd>
+          </div>
         ))}
-      </ol>
+      </dl>
       {item.bridge && (
         <p className="mt-8 text-sm leading-loose">{item.bridge}</p>
       )}
