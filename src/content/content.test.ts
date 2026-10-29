@@ -33,7 +33,7 @@ describe('profile', () => {
 
 describe('avatar', () => {
   it('アイコンは ᴸⁱʸ さんの作品としてクレジットされる', () => {
-    expect(content.profile.avatar.src).toBe('/avatar.jpg')
+    expect(content.profile.avatar.src).toBe('/avatar_all.jpg')
     expect(content.profile.avatar.credit.href).toBe('https://x.com/zZ5lALiyp')
     expect(content.profile.avatar.credit.label).toContain('ᴸⁱʸ')
   })

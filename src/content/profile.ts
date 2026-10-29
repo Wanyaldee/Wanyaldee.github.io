@@ -13,8 +13,8 @@ export const profile: Profile = {
     'インフラの安定稼働と工学原理への探求を軸に、約700人規模のコミュニティ基盤の運用、研究室での基盤運用支援、NEDOプロジェクトでの実装を担っています。「人を責めず仕組みを直す」「リーダーが矢面に立ち挑戦を後押しする」を信念にしています。',
   // 16歳の誕生日に ᴸⁱʸ さんに描いていただいたイラスト（GitHub のアイコンと同じ）
   avatar: {
-    src: '/avatar.jpg',
-    alt: 'わにゃ（Wanyaldee）のアイコンイラスト',
+    src: '/avatar_all.jpg',
+    alt: 'わにゃ（Wanyaldee）のイラスト（ᴸⁱʸ さん作）',
     credit: {
       label: 'アイコンイラスト: ᴸⁱʸ さん（@zZ5lALiyp）',
       href: 'https://x.com/zZ5lALiyp',

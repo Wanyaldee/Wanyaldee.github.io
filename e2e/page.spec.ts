@@ -33,8 +33,13 @@ test('主要セクションと名前が表示され、横にはみ出さない',
   await expect(page.locator('#about .vertical')).toContainText('ありがとう')
 
   // アイコン（ビジュアル面）とクレジット
+  const visual = page.locator('[data-visual] img[src="/avatar_all.jpg"]')
+  await expect(visual).toBeVisible()
+  // 丸型ではなく全体像を見せる
+  await expect(visual).not.toHaveClass(/rounded-full/)
+  // 絵の近くにも作者クレジットを置く
   await expect(
-    page.locator('[data-visual] img[src="/avatar.jpg"]'),
+    page.locator('[data-visual] a[href="https://x.com/zZ5lALiyp"]'),
   ).toBeVisible()
   await expect(
     page.locator('footer a[href="https://x.com/zZ5lALiyp"]'),
