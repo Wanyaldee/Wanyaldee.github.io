@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vite-plus/test'
 import { content } from './index.ts'
-import { findPendingContent, PENDING } from './pending.ts'
+import { findPendingContent, PENDING, withoutPending } from './pending.ts'
 import type { Case, Content, Link } from './types.ts'
 
 const NEDO_PDF =
@@ -105,5 +105,19 @@ describe('findPendingContent', () => {
       vision: { lead: 'ok', body: ['ok'] },
     }
     expect(findPendingContent(sample)).toEqual([])
+  })
+})
+
+describe('withoutPending', () => {
+  it('PENDING とその直前の区切りを取り除く', () => {
+    expect(withoutPending(`Kagawa College, ${PENDING}`)).toBe('Kagawa College')
+  })
+
+  it('全体が PENDING なら空文字', () => {
+    expect(withoutPending(PENDING)).toBe('')
+  })
+
+  it('PENDING を含まなければそのまま', () => {
+    expect(withoutPending('岡田 昊也')).toBe('岡田 昊也')
   })
 })
