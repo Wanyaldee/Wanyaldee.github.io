@@ -2,21 +2,22 @@ import type { ReactNode } from 'react'
 
 type Props = { id: string; label: string; title: string; children: ReactNode }
 
-// 章の見出し: 字間の広い英字ラベル + 日本語見出し + 刷毛線
+// 章の見出し: 大きな欧文 + 小さな日本語
 export function Section({ id, label, title, children }: Props) {
   return (
     <section
       id={id}
-      className="scroll-mt-6 py-14"
+      className="scroll-mt-8 py-20 sm:py-28"
       aria-labelledby={`${id}-title`}
     >
-      <div className="mb-7">
-        <p className="text-xs tracking-[0.4em] text-orange-text">{label}</p>
-        <h2 id={`${id}-title`} className="mt-1 text-2xl font-bold sm:text-3xl">
+      <h2 id={`${id}-title`} className="mb-12">
+        <span className="block font-display text-5xl font-medium tracking-wide sm:text-6xl">
+          {label}
+        </span>
+        <span className="mt-2 block text-xs tracking-[0.3em] text-ink-muted">
           {title}
-        </h2>
-        <div className="brush-rule mt-3 w-24" />
-      </div>
+        </span>
+      </h2>
       {children}
     </section>
   )

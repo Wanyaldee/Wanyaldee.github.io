@@ -1,7 +1,7 @@
 import { isPending } from '../content/pending.ts'
 import type { TimelineCase } from '../content/types.ts'
-import { CaseCard } from './CaseCard.tsx'
-import { ExternalLink } from './ExternalLink.tsx'
+import { ArrowLink } from './ArrowLink.tsx'
+import { CaseHeader } from './CaseHeader.tsx'
 
 type Props = { item: TimelineCase }
 
@@ -15,35 +15,32 @@ export function TimelineCaseCard({ item }: Props) {
   const links = item.links.filter((l) => !isPending(l.label))
 
   return (
-    <CaseCard number={item.number} role={item.role} title={item.title}>
-      <ol className="mt-5 space-y-4 border-l-[3px] border-orange pl-4">
+    <article>
+      <CaseHeader number={item.number} role={item.role} title={item.title} />
+      <ol className="mt-8 space-y-6 border-l border-orange pl-6">
         {steps.map(([label, text]) => (
-          <li key={label}>
-            <p className="text-sm font-bold text-orange-text">
-              <span aria-hidden="true">● </span>
+          <li key={label} className="relative">
+            <span
+              aria-hidden="true"
+              className="absolute top-1.5 -left-[1.8rem] size-2 rounded-full bg-orange"
+            />
+            <p className="font-display text-lg text-orange-text italic">
               {label}
             </p>
-            <p className="mt-1 text-sm leading-relaxed text-ink-sub">{text}</p>
+            <p className="mt-1 text-sm leading-loose text-ink-sub">{text}</p>
           </li>
         ))}
       </ol>
       {item.bridge && (
-        <p className="mt-4 rounded-lg bg-surface px-4 py-3 text-sm">
-          {item.bridge}
-        </p>
+        <p className="mt-8 text-sm leading-loose">{item.bridge}</p>
       )}
-      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+      <ul className="mt-8 space-y-1">
         {links.map((link) => (
           <li key={link.href}>
-            <ExternalLink
-              link={link}
-              className="text-orange-text underline-offset-4 hover:underline"
-            >
-              {link.label} →
-            </ExternalLink>
+            <ArrowLink link={link} />
           </li>
         ))}
       </ul>
-    </CaseCard>
+    </article>
   )
 }

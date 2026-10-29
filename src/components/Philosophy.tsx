@@ -5,18 +5,22 @@ type Props = { values: Value[] }
 
 export function Philosophy({ values }: Props) {
   return (
-    <Section id="philosophy" label="PHILOSOPHY" title="思考の骨子">
-      <ol className="grid gap-4 sm:grid-cols-3">
-        {values.map((v) => (
-          <li
-            key={v.key}
-            className="panel p-5 transition-colors hover:border-orange"
-          >
-            <p className="text-sm font-bold text-orange-text">{v.titleEn}</p>
-            <h3 className="mt-1 font-bold">{v.titleJa}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-sub">
-              {v.body}
-            </p>
+    <Section id="philosophy" label="Philosophy" title="思考の骨子">
+      <ol className="space-y-12">
+        {values.map((v, i) => (
+          <li key={v.key} className="grid grid-cols-[3rem_1fr] gap-x-2">
+            <span className="font-display text-3xl text-orange-text">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3 className="text-lg font-bold tracking-widest">{v.titleJa}</h3>
+              <p className="mt-1 font-display text-base text-ink-muted italic">
+                {v.titleEn}
+              </p>
+              <p className="mt-4 text-sm leading-loose text-ink-sub">
+                {v.body}
+              </p>
+            </div>
           </li>
         ))}
       </ol>

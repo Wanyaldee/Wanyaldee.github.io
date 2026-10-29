@@ -1,27 +1,23 @@
 import { withoutPending } from '../content/pending.ts'
-import type { Link, Vision as VisionContent } from '../content/types.ts'
-import { ContactList } from './ContactList.tsx'
+import type { Vision as VisionContent } from '../content/types.ts'
 import { Section } from './Section.tsx'
 
-type Props = { vision: VisionContent; contacts: Link[] }
+type Props = { vision: VisionContent }
 
-export function Vision({ vision, contacts }: Props) {
+export function Vision({ vision }: Props) {
   const body = vision.body.map(withoutPending).filter((s) => s !== '')
   return (
-    <Section id="contact" label="CAREER VISION" title="これから">
-      <p className="text-xl leading-snug font-bold sm:text-2xl">
-        {vision.lead}
-      </p>
+    <Section id="contact" label="Vision" title="これから">
       {body.map((p) => (
-        <p key={p} className="mt-4 leading-loose text-ink-sub">
+        <p key={p} className="mt-6 leading-loose text-ink-sub first:mt-0">
           {p}
         </p>
       ))}
-      <div className="panel mt-8 p-5">
-        <p className="mb-3 text-xs font-bold tracking-[0.15em] text-orange-text">
-          CONTACT
-        </p>
-        <ContactList contacts={contacts} />
+      <div className="mt-12">
+        <a href="#hero" className="arrow-link">
+          <span>連絡先はページ上部へ</span>
+          <span aria-hidden="true">↑</span>
+        </a>
       </div>
     </Section>
   )

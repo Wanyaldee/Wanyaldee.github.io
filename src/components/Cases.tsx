@@ -20,8 +20,8 @@ function renderCase(item: Case) {
 
 export function Cases({ cases }: Props) {
   return (
-    <Section id="cases" label="CASES" title="思考プロセスの証明">
-      <ol className="space-y-6">
+    <Section id="cases" label="Cases" title="実績と、そのときの判断">
+      <ol className="space-y-24">
         {cases.map((item) => (
           <li key={item.id}>{renderCase(item)}</li>
         ))}

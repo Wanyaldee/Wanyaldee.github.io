@@ -8,16 +8,19 @@ const MAILTO = 'mailto:'
 // メールはメールソフトがなくても読めてコピーできるよう、アドレスも表示する
 export function ContactList({ contacts }: Props) {
   return (
-    <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
+    <ul className="space-y-2 text-sm">
       {contacts.map((link) => (
-        <li key={link.href} className="[overflow-wrap:anywhere]">
+        <li key={link.href} className="flex gap-3 [overflow-wrap:anywhere]">
+          <span className="w-24 shrink-0 text-xs tracking-widest text-ink-muted">
+            {link.label}
+          </span>
           <ExternalLink
             link={link}
-            className="text-orange-text underline-offset-4 hover:underline"
+            className="underline-offset-4 hover:text-orange-text hover:underline"
           >
             {link.href.startsWith(MAILTO)
-              ? `${link.label}: ${link.href.slice(MAILTO.length)}`
-              : link.label}
+              ? link.href.slice(MAILTO.length)
+              : link.href.replace('https://', '')}
           </ExternalLink>
         </li>
       ))}

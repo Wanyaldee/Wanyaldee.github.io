@@ -6,24 +6,25 @@ type Props = { skills: SkillCategory[] }
 
 export function Skills({ skills }: Props) {
   return (
-    <Section id="skills" label="SKILLS & PRINCIPLES" title="技術と、その扱い方">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <Section id="skills" label="Skills" title="技術と、その扱い方">
+      <div className="space-y-14">
         {skills.map((category) => (
-          <div
-            key={category.name}
-            className="panel p-5 transition-colors hover:border-orange"
-          >
-            <h3 className="font-bold">{category.name}</h3>
-            <ul className="mt-3 space-y-2 text-sm">
+          <div key={category.name}>
+            <h3 className="border-b border-ink/15 pb-3 text-sm font-bold tracking-[0.2em]">
+              {category.name}
+            </h3>
+            <dl className="mt-5 space-y-5 text-sm">
               {category.items
                 .filter((i) => withoutPending(i.tech) !== '')
                 .map((i) => (
-                  <li key={i.tech}>
-                    <span className="font-bold text-orange-text">{i.tech}</span>
-                    <span className="text-ink-sub"> — {i.principle}</span>
-                  </li>
+                  <div key={i.tech}>
+                    <dt className="font-medium text-orange-text">{i.tech}</dt>
+                    <dd className="mt-1 leading-loose text-ink-sub">
+                      {i.principle}
+                    </dd>
+                  </div>
                 ))}
-            </ul>
+            </dl>
           </div>
         ))}
       </div>

@@ -3,28 +3,38 @@ import { expect, test } from '@playwright/test'
 test('主要セクションと名前が表示され、横にはみ出さない', async ({ page }) => {
   await page.goto('/')
 
-  for (const id of ['hero', 'philosophy', 'cases', 'skills', 'contact']) {
+  for (const id of [
+    'hero',
+    'about',
+    'philosophy',
+    'cases',
+    'skills',
+    'contact',
+  ]) {
     await expect(page.locator(`#${id}`)).toBeVisible()
   }
-  await expect(page.getByText('岡田 昊也').first()).toBeVisible()
+  await expect(page.locator('#hero').getByText('岡田 昊也')).toBeVisible()
 
   // メールソフトのない PC でも読めて、コピーできるようにアドレスを表示する
   for (const address of ['gooya.3322@gmail.com', 'k-okada@jqca.org']) {
     await expect(page.getByText(address).first()).toBeVisible()
   }
 
-  // 連絡先はヘッダーにあり、プロフィール帯の直後には置かない
-  const header = page.locator('#hero nav')
+  // 連絡先はヘッダー（ファーストビュー）に置き、プロフィール欄には置かない
+  const header = page.locator('#hero')
   await expect(
     header.locator('a[href="https://github.com/Wanyaldee"]'),
   ).toBeVisible()
   const mail = 'a[href="mailto:gooya.3322@gmail.com"]'
-  await expect(header.locator(mail)).toHaveCount(1)
-  await expect(page.locator(`#hero ${mail}`)).toHaveCount(1)
+  await expect(header.locator(mail).first()).toBeVisible()
+  await expect(page.locator(`#about ${mail}`)).toHaveCount(0)
 
-  // アイコンとクレジット
+  // 「ありがとう」の一文は縦書きで主役として置く
+  await expect(page.locator('#about .vertical')).toContainText('ありがとう')
+
+  // アイコン（ビジュアル面）とクレジット
   await expect(
-    page.locator('#hero img[src="/avatar.jpg"]').first(),
+    page.locator('[data-visual] img[src="/avatar.jpg"]'),
   ).toBeVisible()
   await expect(
     page.locator('footer a[href="https://x.com/zZ5lALiyp"]'),

@@ -11,6 +11,7 @@
   --color-ink-sub: #6b4c38;
   --color-ink-muted: #8a6a55;
   --font-sans: 'Noto Sans JP', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
 }
 
 html {
@@ -25,29 +26,23 @@ html {
 
 body {
   @apply bg-cream font-sans text-ink antialiased;
+  font-feature-settings: 'palt';
+  letter-spacing: 0.04em;
+  /* 日本語を文節で折り返す（対応ブラウザのみ。非対応では通常の折り返し） */
+  word-break: auto-phrase;
 }
 
-/* 章デザイン（event.awajiempire.net の SectionHead / kosatsu をこのサイトの配色に置き換えたもの） */
-
 @layer components {
-  /* 見出し下の刷毛線 */
-  .brush-rule {
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      var(--color-orange),
-      var(--color-orange-text) 70%,
-      transparent
-    );
-    border-radius: 2px;
+  /* 縦書きの文章 */
+  .vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.18em;
+    line-height: 2.2;
   }
 
-  /* 罫で囲んだパネル */
-  .panel {
-    background:
-      linear-gradient(180deg, rgba(246, 146, 63, 0.05), rgba(246, 146, 63, 0)),
-      var(--color-card);
-    border: 1px solid rgba(180, 82, 15, 0.22);
-    border-radius: 2px;
+  /* 矢印付きの下線リンク */
+  .arrow-link {
+    @apply flex w-full max-w-72 items-center justify-between gap-4 border-b border-ink/70 py-3 text-sm font-medium tracking-widest transition-colors hover:border-orange-text hover:text-orange-text;
   }
 }
