@@ -49,7 +49,7 @@ export const cases: Case[] = [
     result:
       '開発前にビジョンと需要を聞き取り、仲間と共有してから手を動かす姿勢を身につけた。LPは公開・運用中。',
     bridge:
-      'CASE 01 の「目的の再共有」と同じく、作る前に北極星をそろえることの大切さを学んだ。',
+      'CASE 01 の「目的の再共有」と同じく、作る前に目標をそろえることの大切さを学んだ。',
     // リポジトリは非公開なので GitHub へはリンクしない
     links: [{ label: 'イベントLP', href: 'https://event.awajiempire.net/' }],
   },

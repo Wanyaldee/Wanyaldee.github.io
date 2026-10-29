@@ -142,3 +142,10 @@ describe('withoutPending', () => {
     expect(withoutPending('岡田 昊也')).toBe('岡田 昊也')
   })
 })
+
+describe('表記', () => {
+  it('「北極星」という比喩を使わない', () => {
+    expect(JSON.stringify(content)).not.toContain('北極星')
+    expect(JSON.stringify(content)).not.toContain('North Star')
+  })
+})

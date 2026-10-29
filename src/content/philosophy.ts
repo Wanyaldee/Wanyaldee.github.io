@@ -9,8 +9,8 @@ export const values: Value[] = [
   },
   {
     key: 'north-star',
-    titleEn: 'North Star & Ownership',
-    titleJa: '北極星の共有と当事者責任',
+    titleEn: 'Shared Goal & Ownership',
+    titleJa: '目標の共有と当事者責任',
     body: '独走の反省を経て身につけた、共通目的の共有。トラブル時はリーダーが盾になり、仕組みで再発を防ぐ。',
   },
   {
