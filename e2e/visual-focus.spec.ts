@@ -75,3 +75,29 @@ for (const viewport of VIEWPORTS) {
     }
   })
 }
+
+for (const viewport of VIEWPORTS) {
+  test(`${viewport.width}x${viewport.height} では、縦書きの一文が面からはみ出さず、クレジットと重ならない`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport)
+    await page.goto('/')
+
+    const catchcopy = page.locator('[data-visual] .vertical')
+    if (!(await catchcopy.isVisible())) return
+    const text = await catchcopy.boundingBox()
+    const panel = await page.locator('[data-visual]').boundingBox()
+    const credit = await page
+      .locator('[data-visual] a[href="https://x.com/zZ5lALiyp"]')
+      .boundingBox()
+    if (!text || !panel || !credit) throw new Error('box not found')
+
+    expect(text.y + text.height).toBeLessThanOrEqual(panel.y + panel.height)
+    const overlaps =
+      text.x < credit.x + credit.width &&
+      credit.x < text.x + text.width &&
+      text.y < credit.y + credit.height &&
+      credit.y < text.y + text.height
+    expect(overlaps).toBe(false)
+  })
+}

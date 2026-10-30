@@ -5,11 +5,10 @@ import type { Case, Content, Link } from './types.ts'
 
 const NEDO_PDF =
   'https://qc-challenge.nedo.go.jp/season_2/docs/list_of_screened_applicants_20260831.pdf'
+const NEDO_PROGRAM = 'NEDO懸賞金活用型プログラム'
 
 function allLinks(c: Content): Link[] {
-  const caseLinks = c.cases.flatMap((x) =>
-    x.kind === 'timeline' ? x.links : [x.link],
-  )
+  const caseLinks = c.cases.flatMap((x) => x.links)
   return [...c.profile.contacts, c.profile.avatar.credit, ...caseLinks]
 }
 
@@ -56,18 +55,52 @@ describe('cases', () => {
     ])
   })
 
-  it('NEDO はチーム名・課題名・役割・PDFリンク以外を持たない', () => {
+  it('NEDO はプログラム名・チーム名・課題名・役割・経緯・リンク以外を持たない', () => {
     const nedo = findCase('nedo')
     expect(Object.keys(nedo).sort()).toEqual([
+      'history',
       'id',
       'kind',
-      'link',
+      'links',
       'number',
+      'program',
       'role',
       'team',
       'theme',
     ])
-    expect(nedo.kind === 'nedo' && nedo.link.href).toBe(NEDO_PDF)
+    if (nedo.kind !== 'nedo') throw new Error('nedo expected')
+    expect(nedo.links.map((l) => l.href)).toEqual([
+      NEDO_PDF,
+      'https://qc-challenge.nedo.go.jp/season_2/',
+      'https://qc-challenge.nedo.go.jp/season_1/',
+    ])
+  })
+
+  it('NEDO は「NEDO懸賞金活用型プログラム」の Season 2 と書く', () => {
+    const nedo = findCase('nedo')
+    if (nedo.kind !== 'nedo') throw new Error('nedo expected')
+    expect(nedo.program).toBe(`${NEDO_PROGRAM} Season 2`)
+  })
+
+  it('Season 1 で受賞しなかったことと、Season 2 につながったことを書く', () => {
+    const nedo = findCase('nedo')
+    if (nedo.kind !== 'nedo') throw new Error('nedo expected')
+    expect(nedo.history).toContain('Season 1')
+    expect(nedo.history).toContain('受賞はしませんでした')
+    expect(nedo.history).toContain('Season 2 につながり')
+  })
+
+  it('NEDO に触れる文では正式な名称を使う', () => {
+    const texts = [
+      content.profile.statement,
+      ...content.values.map((v) => v.body),
+    ]
+    for (const text of texts.filter((t) => t.includes('NEDO'))) {
+      expect(text).toContain(NEDO_PROGRAM)
+    }
+    expect(JSON.stringify(content)).not.toMatch(
+      /NEDOプロジェクト|懸賞金チャレンジ/,
+    )
   })
 
   it('CASE 01 は承認済みの3コミットへリンクする', () => {

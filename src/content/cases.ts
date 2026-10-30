@@ -58,13 +58,26 @@ export const cases: Case[] = [
     kind: 'nedo',
     id: 'nedo',
     number: '03',
+    program: 'NEDO懸賞金活用型プログラム Season 2',
     team: 'チャイルドリーム',
     theme:
       '量子コンピュータによる双方向型動的教育教材・学習方針（能力測定のためのテスト問題含む）の機械生成',
     role: '生成AI・図生成エンジンなど、問題作成に関わる実装を担当',
-    link: {
-      label: '書類審査通過者一覧（NEDO）',
-      href: 'https://qc-challenge.nedo.go.jp/season_2/docs/list_of_screened_applicants_20260831.pdf',
-    },
+    history:
+      'Season 1 にも参加しましたが、受賞はしませんでした。その挑戦が Season 2 につながり、書類審査を通過しました。',
+    links: [
+      {
+        label: 'Season 2 書類審査通過者一覧（NEDO）',
+        href: 'https://qc-challenge.nedo.go.jp/season_2/docs/list_of_screened_applicants_20260831.pdf',
+      },
+      {
+        label: 'Season 2 の概要（NEDO）',
+        href: 'https://qc-challenge.nedo.go.jp/season_2/',
+      },
+      {
+        label: 'Season 1 の概要（NEDO）',
+        href: 'https://qc-challenge.nedo.go.jp/season_1/',
+      },
+    ],
   },
 ]

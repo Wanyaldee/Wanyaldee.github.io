@@ -57,6 +57,14 @@ body {
       );
   }
 
+  /* 面が低いと縦書きの一文が収まらずクレジットに重なるので、出さない。
+     同じ一文はヘッダーにもある */
+  @container (height < 560px) {
+    .visual-catch {
+      display: none;
+    }
+  }
+
   /* 矢印付きの下線リンク */
   .arrow-link {
     @apply flex w-full max-w-72 items-center justify-between gap-4 border-b border-ink/70 py-3 text-sm font-medium tracking-widest transition-colors hover:border-orange-text hover:text-orange-text;
