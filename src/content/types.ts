@@ -49,7 +49,8 @@ export type TimelineCase = {
 }
 
 // NEDO は公開範囲がチーム名・課題名・役割・リンクに限られるため、型でもそれ以外を持たせない。
-// history は本人の参加歴（Season 1 から Season 2 への経緯）だけを書く
+// history は本人の参加歴（Season 1 から Season 2 への経緯）、
+// connections は NEDO の活動から広がった本人の活動（公開されている事実だけ）を書く
 export type NedoCase = {
   kind: 'nedo'
   id: string
@@ -59,6 +60,15 @@ export type NedoCase = {
   theme: string
   role: string
   history: string
+  links: Link[]
+  connections: Connection[]
+}
+
+// NEDO の活動から広がったこと（DCON2027 への出場、JQCA への参画など）
+export type Connection = {
+  id: string
+  title: string
+  body: string
   links: Link[]
 }
 

@@ -29,6 +29,10 @@ export const profile: Profile = {
       ja: '日本量子コンピューティング協会（JQCA）大阪支部所属',
       en: 'Japan Quantum Computing Association, Osaka Branch Member',
     },
+    {
+      ja: '日本生成AI協会（JGAIA）所属',
+      en: 'Japan Generative AI Association, Member',
+    },
   ],
   contacts: [
     { label: 'Mail', href: 'mailto:gooya.3322@gmail.com' },
