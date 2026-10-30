@@ -9,7 +9,7 @@ export const cases: Case[] = [
     id: 'awaji-agent',
     number: '01',
     role: 'プロジェクトリード / インフラ設計・運用',
-    title: 'Awaji-Empire-Agent & 700人規模コミュニティ基盤',
+    title: 'Awaji-Empire-Agent（700人規模コミュニティ基盤）',
     background:
       'ゆっくり実況者の社畜天狗さんの Discord コミュニティ「淡路帝国」が、わたしの活動の始まりです。その基盤を運用する中で、イベント直前に、外部ドメイン事業者の重大インシデントの兆候を察知しました。',
     decision:
