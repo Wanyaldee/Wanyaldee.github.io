@@ -16,6 +16,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* 4K を100%表示するような、とても広い画面では文字が小さく見えるので、
+     幅 1920px から 3840px にかけて基準の文字サイズを 100% → 137.5% になめらかに上げる。
+     文字や余白は rem で決まっているので、全体が同じ比率で大きくなる */
+  font-size: clamp(100%, calc(100% + (100vw - 1920px) * 0.003125), 137.5%);
 }
 
 @media (prefers-reduced-motion: reduce) {
