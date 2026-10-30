@@ -41,6 +41,22 @@ body {
     line-height: 2.2;
   }
 
+  /* ビジュアル面の絵（810x1280）。一部しか出ないときは、GitHub のアイコンと
+     同じ範囲（左30・上493・一辺748px。中心は横50%・縦67.7%）を面の中心に置き、
+     範囲が収まる大きさならその全体を映す。絵の高さ = max(面の高さ, 面の幅×1280/810) */
+  .visual-panel {
+    container-type: size;
+  }
+  .visual-focus {
+    --image-height: max(100cqh, 100cqw * 1280 / 810);
+    object-position: 50%
+      clamp(
+        100cqh - var(--image-height),
+        50cqh - var(--image-height) * 0.677,
+        0px
+      );
+  }
+
   /* 矢印付きの下線リンク */
   .arrow-link {
     @apply flex w-full max-w-72 items-center justify-between gap-4 border-b border-ink/70 py-3 text-sm font-medium tracking-widest transition-colors hover:border-orange-text hover:text-orange-text;
