@@ -1,0 +1,34 @@
+name: CI
+
+# main への push では deploy.yml から workflow_call で呼ばれ、通らなければ公開しない
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Vite+・Node（.node-version）・npm を用意し、vp install まで行う
+      - uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
+        with:
+          node-version-file: .node-version
+          cache: true
+
+      # 整形チェック + lint + 型チェック
+      - run: vp check
+
+      # 単体テスト（コンテンツ検証）
+      - run: npm test
+
+      - run: npm run build
+
+      # 表示確認（PC幅・スマホ幅）
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

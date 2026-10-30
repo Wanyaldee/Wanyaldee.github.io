@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+/* src/theme/colors.ts と同じ値（ワドルディ由来の配色） */
+@theme {
+  --color-cream: #fff7ec;
+  --color-card: #ffffff;
+  --color-surface: #fff3e2;
+  --color-orange: #f6923f;
+  --color-orange-text: #b4520f;
+  --color-ink: #3b2416;
+  --color-ink-sub: #6b4c38;
+  --color-ink-muted: #8a6a55;
+  --font-sans: 'Noto Sans JP', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif JP', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply bg-cream font-sans text-ink antialiased;
+  font-feature-settings: 'palt';
+  letter-spacing: 0.04em;
+  /* 日本語を文節で折り返す（対応ブラウザのみ。非対応では通常の折り返し） */
+  word-break: auto-phrase;
+}
+
+@layer components {
+  /* 縦書きの文章 */
+  .vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 0.18em;
+    line-height: 2.2;
+  }
+
+  /* 矢印付きの下線リンク */
+  .arrow-link {
+    @apply flex w-full max-w-72 items-center justify-between gap-4 border-b border-ink/70 py-3 text-sm font-medium tracking-widest transition-colors hover:border-orange-text hover:text-orange-text;
+  }
+}
