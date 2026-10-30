@@ -36,7 +36,7 @@ export const repositories: Repository[] = [
     license: 'MIT',
     status: '更新中__PENDING__',
     overview:
-      'blueqat MCP サーバーで量子回路・QAOA・VQE・実機 QPU を試した使用例集です。',
+      'blueqat MCP サーバーで量子回路・QAOA・VQE を試した使用例集です。実機 QPU にはジョブは投げず、仕様と料金を調べてまとめています。',
     why: 'MCP 経由で量子計算がどこまでできるかを確かめるために始めました。__PENDING__',
     thought:
       '結果は手で書き換えず、実際に実行したときの run_id を添えて、だれでも検証できるようにしました。',
@@ -67,7 +67,7 @@ export const repositories: Repository[] = [
     why: 'IDE が重いこと、ビルドが通っても実機で止まること、異常終了でマイコンのポートを掴んだままになることを解決したくて始めました。',
     thought:
       'ロジックはすべて Rust に置き、C/C++ には入出力の受け渡しだけを許すという境界を決めました。方針は RFC として4本書いています。',
-    now: '試作（シリアルモニター、Citadel への名前の変更）までを作り、2026年8月から手を止めています。__PENDING__',
+    now: 'ボードの判別とビルド・書き込み、新規プロジェクトの作成、シリアルモニター、境界チェックの試作までを作り、2026年8月から手を止めています。__PENDING__',
   },
   {
     id: 'Wanyaldee/wanyaldee-skills',

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vite-plus/test'
+import repositoriesHtml from '../../repositories/index.html?raw'
 import { content } from './index.ts'
-import { findPendingContent, PENDING } from './pending.ts'
+import { findPendingContent, PENDING, withoutPending } from './pending.ts'
 import { repositoryUrl } from './repositories.ts'
 
 function findRepository(id: string) {
@@ -77,5 +78,44 @@ describe('repositories', () => {
       repositories: [{ ...content.repositories[0], why: PENDING }],
     }
     expect(findPendingContent(sample)).toContain('repositories[0].why')
+  })
+})
+
+describe('repositories の事実関係', () => {
+  it('blueqat-mcp-playground は実機にジョブを投げていないので、実機を試したとは書かない', () => {
+    const repo = findRepository('Wanyaldee/blueqat-mcp-playground')
+    expect(repo.overview).not.toMatch(/実機 ?QPU を試した/)
+    expect(repo.overview).toContain('ジョブは投げず')
+  })
+
+  it('citadel の「いま」は、ビルド・書き込みと境界チェックの試作まで作ったことを書く', () => {
+    const now = findRepository('Wanyaldee/citadel').now
+    for (const part of [
+      'ビルド',
+      '書き込み',
+      '境界チェック',
+      'シリアルモニター',
+    ]) {
+      expect(now).toContain(part)
+    }
+  })
+})
+
+describe('一覧ページの HTML の head', () => {
+  // HTML は公開前ゲートの外にあるので、content の文言と食い違わないことをここで確かめる。
+  // 整形で属性が改行されても比べられるよう、空白をならしてから見る
+  const html = repositoriesHtml.replace(/\s+/g, ' ')
+  const text = content.site.repositoriesPage
+
+  it('<title> と og:title に見出しが入る', () => {
+    const title = withoutPending(text.title)
+    expect(html).toContain(`<title>${title} |`)
+    expect(html).toContain(`property="og:title" content="${title} |`)
+  })
+
+  it('description と og:description は、ページ冒頭の一文と同じ', () => {
+    const lead = withoutPending(text.lead)
+    expect(html).toContain(`name="description" content="${lead}"`)
+    expect(html).toContain(`property="og:description" content="${lead}"`)
   })
 })
