@@ -27,7 +27,7 @@ export const repositories: Repository[] = [
     why: 'ワークショップの教材と、自分の理解のために作りました。__PENDING__',
     thought:
       '計算はブラウザ内の小さなシミュレータで行い、外部の API やキーなしで動くようにしました。この判断は ADR に残しています。',
-    now: 'GitHub Pages で公開しています。最終更新は 2026年10月26日です。',
+    now: 'GitHub Pages で公開し、機能を足し続けています。',
   },
   {
     id: 'Wanyaldee/blueqat-mcp-playground',
@@ -40,7 +40,7 @@ export const repositories: Repository[] = [
     why: 'MCP 経由で量子計算がどこまでできるかを確かめるために始めました。__PENDING__',
     thought:
       '結果は手で書き換えず、実際に実行したときの run_id を添えて、だれでも検証できるようにしました。',
-    now: '使用例は19件あり、quantum-visualizer の題材にも使っています。最終更新は 2026年10月29日です。',
+    now: '使用例を増やし続けていて、quantum-visualizer の題材にも使っています。',
   },
   {
     id: 'Wanyaldee/Easy-Archive',
@@ -53,7 +53,7 @@ export const repositories: Repository[] = [
     why: 'Linux の PC で、自治体や取引先から届く ZIP のファイル名が文字化けし、GUI で正しく開けるツールが見当たらなかったので作りました。',
     thought:
       '対象を ZIP と Ubuntu 系に絞り、解凍だけでなく送り返すための圧縮も最低限そろえました。中核の部分は OS に依存しない作りにしています。',
-    now: 'v0.1.2 を .deb パッケージで配布しています。最終更新は 2026年9月16日です。',
+    now: '.deb パッケージで配布しています。',
   },
   {
     id: 'Wanyaldee/citadel',
@@ -67,7 +67,7 @@ export const repositories: Repository[] = [
     why: 'IDE が重いこと、ビルドが通っても実機で止まること、異常終了でマイコンのポートを掴んだままになることを解決したくて始めました。',
     thought:
       'ロジックはすべて Rust に置き、C/C++ には入出力の受け渡しだけを許すという境界を決めました。方針は RFC として4本書いています。',
-    now: '試作（シリアルモニター、Citadel への名前の変更）までを作りました。最終更新は 2026年8月14日です。__PENDING__',
+    now: '試作（シリアルモニター、Citadel への名前の変更）までを作り、2026年8月から手を止めています。__PENDING__',
   },
   {
     id: 'Wanyaldee/wanyaldee-skills',
@@ -80,7 +80,7 @@ export const repositories: Repository[] = [
     why: 'AI に任せる開発でも、同じ規律で作業させるために始めました。__PENDING__',
     thought:
       'どのエージェントにも効く4つのスキルは、Claude Code 以外でも読めるよう AGENTS.md の形でも出しています。',
-    now: 'v2.12.0 を Claude Code のプラグインとして配布しています。最終更新は 2026年10月23日です。',
+    now: 'Claude Code のプラグインとして配布し、更新を続けています。',
   },
   {
     id: 'Awaji-Empire-Technical-Department/Awaji-Empire-Agent',
@@ -93,7 +93,7 @@ export const repositories: Repository[] = [
       'Discord サーバー「淡路帝国」の運営を支える Bot とダッシュボードです。',
     why: 'コミュニティの運営を仕組みで支えるために始めました。詳しくはトップページの CASE 01 に書いています。__PENDING__',
     thought: '判断の経緯は CASE 01 に書いています。',
-    now: '運用を続けています。最終更新は 2026年10月28日です。',
+    now: '運用と開発を続けています。',
   },
 ]
 

@@ -50,6 +50,12 @@ describe('repositories', () => {
     )
   })
 
+  it('「いま」には、すぐ古くなる最終更新日やバージョン番号を書かない', () => {
+    for (const repo of content.repositories) {
+      expect(repo.now).not.toMatch(/最終更新|v\d+\.\d+/)
+    }
+  })
+
   it('盛った言い回しを使わない', () => {
     const text = JSON.stringify(content.repositories)
     for (const word of [
