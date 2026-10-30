@@ -101,3 +101,45 @@ test('スマホでは章と章の間を空けすぎない', async ({ page }, tes
     expect(gap).toBeLessThanOrEqual(112)
   }
 })
+
+test('セクションナビと実績の最後から、リポジトリ一覧へ同じタブで移れる', async ({
+  page,
+}, testInfo) => {
+  await page.goto('/')
+  const casesLink = page.locator('#cases a[href="/repositories/"]')
+  await expect(casesLink).toBeVisible()
+  await expect(casesLink).not.toHaveAttribute('target', '_blank')
+
+  // スマホではメニューを開いてから選ぶ
+  if (testInfo.project.name === 'mobile') {
+    await page.getByRole('button', { name: 'メニューを開く' }).click()
+  }
+  const navLink = page
+    .locator('nav[aria-label="セクション"], [role="dialog"]')
+    .locator('a[href="/repositories/"]:visible')
+  await expect(navLink).not.toHaveAttribute('target', '_blank')
+  await navLink.click()
+  await expect(page).toHaveURL(/\/repositories\/$/)
+  await expect(page.locator('[data-repository]').first()).toBeVisible()
+})
+
+test('とても広い画面（4K を100%表示）では、文字を一回り大きくする', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop')
+  const rootFontSize = () =>
+    page.evaluate(() =>
+      parseFloat(getComputedStyle(document.documentElement).fontSize),
+    )
+
+  // ふつうの PC の幅では、ブラウザの既定のまま
+  await page.goto('/')
+  expect(await rootFontSize()).toBe(16)
+
+  await page.setViewportSize({ width: 3840, height: 2160 })
+  expect(await rootFontSize()).toBeCloseTo(22, 0)
+
+  // その間はなめらかに大きくなる
+  await page.setViewportSize({ width: 2880, height: 1620 })
+  expect(await rootFontSize()).toBeCloseTo(19, 0)
+})

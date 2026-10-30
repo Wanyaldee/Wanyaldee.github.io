@@ -64,6 +64,30 @@ export type NedoCase = {
 
 export type Case = TimelineCase | NedoCase
 
+// リポジトリ一覧ページ（/repositories/）の1件。載せるのは public・OSS ライセンス付き・本人が主なコミッターのもの
+export type Repository = {
+  /** 'owner/name' */
+  id: string
+  /** GitHub のリポジトリ作成日（YYYY-MM-DD） */
+  startedOn: string
+  language: string
+  /** 表示用（'MIT'、'Apache-2.0 / GPL-3.0' など） */
+  license: string
+  /** 動いているものを見られる公開ページ（あれば） */
+  page?: Link
+  /** フォークなら元のリポジトリ */
+  forkOf?: Link
+  /** トップの Case と重なるなら、その Case の id */
+  relatedCase?: string
+  /** 関係する人やページへのリンク（GitHub・公開ページのほか） */
+  relatedLinks?: Link[]
+  status: string
+  overview: string
+  why: string
+  thought: string
+  now: string
+}
+
 export type SkillCategory = {
   name: string
   items: { tech: string; principle: string }[]
@@ -77,4 +101,42 @@ export type Content = {
   cases: Case[]
   skills: SkillCategory[]
   vision: Vision
+  repositories: Repository[]
+  site: SiteText
+  works: Work[]
+}
+
+// リポジトリは公開していない（OSS ではない）が、公開している成果物
+export type Work = {
+  id: string
+  name: string
+  overview: string
+  page: Link
+  /** トップの Case と重なるなら、その Case の id */
+  relatedCase?: string
+  /** 関係する人やページへのリンク（GitHub・公開ページのほか） */
+  relatedLinks?: Link[]
+}
+
+// トップと一覧ページで使う、ページの枠まわりの文言
+export type SiteText = {
+  repositoriesPage: {
+    label: string
+    title: string
+    lead: string
+    back: string
+    details: string
+    github: string
+    /** フォーク元の名前の後ろにつける（「Zed のフォーク」） */
+    forkSuffix: string
+    relatedCase: string
+    worksTitle: string
+    worksLead: string
+  }
+  /** ヘッダーのナビに出す、一覧ページへの項目名 */
+  navLabel: string
+  /** 実績（Cases）の最後に置く、一覧ページへのリンク */
+  casesLinkLabel: string
+  /** フッターに出すライセンスの表記と適用範囲 */
+  license: { code: string; excluded: string; licenseHref: string }
 }

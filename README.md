@@ -4,6 +4,13 @@
 
 - 文言はすべて `src/content/` にある（コンポーネントは描画のみ）
 
+## ライセンス
+
+- コード（仕組み・デザイン）は [MIT License](LICENSE) です。
+- 次のものは MIT の対象外です。
+  - イラスト（`public/avatar_all.jpg` と、それを使った `public/og.png`）: ᴸⁱʸ さん（https://x.com/zZ5lALiyp）の作品で、著作権は作者にあります。
+  - `src/content/` の文章: 著作権は Wanyaldee にあり、すべての権利を留保します。
+
 ## Tech stack
 
 Vite+（`vite-plus`）+ React + TypeScript + Tailwind CSS v4。Node 22（`.node-version`）。

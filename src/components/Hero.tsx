@@ -1,13 +1,6 @@
 import type { Profile } from '../content/types.ts'
 import { ContactList } from './ContactList.tsx'
 
-const NAV = [
-  { id: 'about', label: 'わたしについて' },
-  { id: 'cases', label: '実績' },
-  { id: 'skills', label: '技術' },
-  { id: 'contact', label: 'これから' },
-] as const
-
 type Props = { profile: Profile }
 
 function Catchcopy({ text, emphasis }: { text: string; emphasis: string }) {
@@ -24,25 +17,7 @@ function Catchcopy({ text, emphasis }: { text: string; emphasis: string }) {
 
 export function Hero({ profile }: Props) {
   return (
-    <header id="hero" className="flex min-h-svh flex-col pt-8">
-      <nav className="flex flex-wrap items-center justify-between gap-4 text-xs tracking-widest">
-        <ul className="flex flex-wrap gap-x-6 gap-y-2">
-          {NAV.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`} className="hover:text-orange-text">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a
-          href={profile.contacts[0].href}
-          className="rounded-full border border-ink px-5 py-2 transition-colors hover:border-orange-text hover:text-orange-text"
-        >
-          メールする
-        </a>
-      </nav>
-
+    <header id="hero" className="flex min-h-svh flex-col pt-8 lg:pt-14">
       <div className="my-auto py-20">
         <p className="text-xs tracking-[0.3em] text-orange-text">
           {profile.eyebrow}
@@ -59,7 +34,7 @@ export function Hero({ profile }: Props) {
             emphasis={profile.catchcopyEmphasis}
           />
         </div>
-        <div className="mt-10">
+        <div id="top-contacts" className="mt-10 scroll-mt-24">
           <ContactList contacts={profile.contacts} />
         </div>
       </div>

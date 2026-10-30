@@ -103,6 +103,12 @@ describe('cases', () => {
     )
   })
 
+  it('CASE 01 の見出しは、Awaji-Empire-Agent がコミュニティ基盤そのものであると読める', () => {
+    const agent = findCase('awaji-agent')
+    if (agent.kind !== 'timeline') throw new Error('timeline expected')
+    expect(agent.title).toBe('Awaji-Empire-Agent（700人規模コミュニティ基盤）')
+  })
+
   it('CASE 01 は承認済みの3コミットへリンクする', () => {
     const agent = findCase('awaji-agent')
     if (agent.kind !== 'timeline') throw new Error('timeline expected')
@@ -113,6 +119,7 @@ describe('cases', () => {
       `${repo}/commit/e94bb1e`,
       `${repo}/commit/b6a966d`,
       `${repo}/commit/df9fff7`,
+      'https://www.youtube.com/@Shachiku_Tengu',
     ])
   })
 
@@ -141,6 +148,8 @@ describe('findPendingContent', () => {
       ...content,
       profile: { ...content.profile, affiliations: [] },
       cases: [],
+      repositories: [],
+      site: {},
       skills: [{ name: 'x', items: [{ tech: 'a', principle: PENDING }] }],
       vision: { lead: 'ok', body: [PENDING] },
     }
@@ -155,6 +164,8 @@ describe('findPendingContent', () => {
       ...content,
       profile: { ...content.profile, affiliations: [] },
       cases: [],
+      repositories: [],
+      site: {},
       skills: [],
       vision: { lead: 'ok', body: ['ok'] },
     }
@@ -189,16 +200,29 @@ describe('文体', () => {
     const timeline = c.cases.flatMap((x) =>
       x.kind === 'timeline'
         ? [x.background, x.decision, x.reflection, x.result, x.bridge ?? '']
-        : [],
+        : [x.history],
     )
-    return [
-      c.profile.statement,
-      ...c.values.map((v) => v.body),
-      ...timeline,
-      ...c.skills.flatMap((s) => s.items.map((i) => i.principle)),
-      c.vision.lead,
-      ...c.vision.body,
-    ].filter((s) => s !== '')
+    const repositories = c.repositories.flatMap((r) => [
+      r.overview,
+      r.why,
+      r.thought,
+      r.now,
+    ])
+    return (
+      [
+        c.profile.statement,
+        ...c.values.map((v) => v.body),
+        ...timeline,
+        ...c.skills.flatMap((s) => s.items.map((i) => i.principle)),
+        c.vision.lead,
+        ...c.vision.body,
+        ...repositories,
+        ...c.works.map((w) => w.overview),
+      ]
+        // 未確定の印（__PENDING__）は文末の判定から外す
+        .map(withoutPending)
+        .filter((s) => s !== '')
+    )
   }
 
   it('すべての文が丁寧語で終わる', () => {
@@ -221,5 +245,46 @@ describe('vision', () => {
     expect(JSON.stringify(content)).not.toContain(
       '「やりたいこと」を「できる」',
     )
+  })
+})
+
+describe('license', () => {
+  it('コードは MIT で、LICENSE ファイルへリンクする', () => {
+    expect(content.site.license.licenseHref).toBe(
+      'https://github.com/Wanyaldee/Wanyaldee.github.io/blob/main/LICENSE',
+    )
+    expect(content.site.license.code).toContain('MIT')
+  })
+
+  it('文章とイラストは対象外であることを書く', () => {
+    expect(content.site.license.excluded).toContain('文章')
+    expect(content.site.license.excluded).toContain('イラスト')
+  })
+})
+
+describe('活動の始まり（社畜天狗さんのコミュニティ）', () => {
+  const CHANNEL = 'https://www.youtube.com/@Shachiku_Tengu'
+
+  it('CASE 01・02 の背景に社畜天狗さんのコミュニティを書き、チャンネルへリンクする', () => {
+    for (const id of ['awaji-agent', 'offevent-lp']) {
+      const item = findCase(id)
+      if (item.kind !== 'timeline') throw new Error('timeline expected')
+      expect(item.background).toContain('社畜天狗さん')
+      expect(item.links.map((l) => l.href)).toContain(CHANNEL)
+    }
+    const agent = findCase('awaji-agent')
+    if (agent.kind !== 'timeline') throw new Error('timeline expected')
+    expect(agent.background).toContain('活動の始まり')
+  })
+
+  it('一覧ページの Awaji-Empire-Agent とオフイベントLPにも書き、チャンネルへリンクする', () => {
+    const agent = content.repositories.find(
+      (r) => r.id === 'Awaji-Empire-Technical-Department/Awaji-Empire-Agent',
+    )
+    expect(agent?.why).toContain('社畜天狗さん')
+    expect(agent?.relatedLinks?.map((l) => l.href)).toContain(CHANNEL)
+    const lp = content.works.find((w) => w.id === 'offevent-lp')
+    expect(lp?.overview).toContain('社畜天狗さん')
+    expect(lp?.relatedLinks?.map((l) => l.href)).toContain(CHANNEL)
   })
 })

@@ -27,7 +27,7 @@ export function VisualPanel({ profile }: Props) {
         aria-hidden="true"
         className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-cream/80 to-transparent"
       />
-      <p className="visual-catch vertical absolute top-8 right-6 text-sm font-medium text-ink sm:right-10 sm:text-base">
+      <p className="visual-catch vertical absolute top-20 right-6 lg:top-8 text-sm font-medium text-ink sm:right-10 sm:text-base">
         {lines.map((line, i) => (
           <span key={line} className="block">
             {line}
