@@ -6,6 +6,16 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   // ユーザーサイト（https://wanyaldee.github.io/）なのでルート配信
   base: '/',
+  // トップ（/）とリポジトリ一覧（/repositories/）の2ページ。
+  // 一覧を別の HTML にしておくと、Pages で直接開いても 404 にならない
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        repositories: 'repositories/index.html',
+      },
+    },
+  },
   fmt: {
     semi: false,
     singleQuote: true,

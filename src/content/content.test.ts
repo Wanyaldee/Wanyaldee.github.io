@@ -142,6 +142,7 @@ describe('findPendingContent', () => {
       profile: { ...content.profile, affiliations: [] },
       cases: [],
       repositories: [],
+      site: {},
       skills: [{ name: 'x', items: [{ tech: 'a', principle: PENDING }] }],
       vision: { lead: 'ok', body: [PENDING] },
     }
@@ -157,6 +158,7 @@ describe('findPendingContent', () => {
       profile: { ...content.profile, affiliations: [] },
       cases: [],
       repositories: [],
+      site: {},
       skills: [],
       vision: { lead: 'ok', body: ['ok'] },
     }

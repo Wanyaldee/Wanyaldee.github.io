@@ -98,4 +98,16 @@ export type Content = {
   skills: SkillCategory[]
   vision: Vision
   repositories: Repository[]
+  site: SiteText
+}
+
+// トップと一覧ページで使う、ページの枠まわりの文言
+export type SiteText = {
+  repositoriesPage: {
+    label: string
+    title: string
+    lead: string
+    back: string
+    details: string
+  }
 }
