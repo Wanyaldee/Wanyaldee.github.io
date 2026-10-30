@@ -64,6 +64,26 @@ export type NedoCase = {
 
 export type Case = TimelineCase | NedoCase
 
+// リポジトリ一覧ページ（/repositories/）の1件。載せるのは public・OSS ライセンス付き・本人が主なコミッターのもの
+export type Repository = {
+  /** 'owner/name' */
+  id: string
+  /** GitHub のリポジトリ作成日（YYYY-MM-DD） */
+  startedOn: string
+  language: string
+  /** 表示用（'MIT'、'Apache-2.0 / GPL-3.0' など） */
+  license: string
+  /** フォークなら元のリポジトリ */
+  forkOf?: Link
+  /** トップの Case と重なるなら、その Case の id */
+  relatedCase?: string
+  status: string
+  overview: string
+  why: string
+  thought: string
+  now: string
+}
+
 export type SkillCategory = {
   name: string
   items: { tech: string; principle: string }[]
@@ -77,4 +97,5 @@ export type Content = {
   cases: Case[]
   skills: SkillCategory[]
   vision: Vision
+  repositories: Repository[]
 }

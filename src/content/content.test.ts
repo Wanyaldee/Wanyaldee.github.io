@@ -141,6 +141,7 @@ describe('findPendingContent', () => {
       ...content,
       profile: { ...content.profile, affiliations: [] },
       cases: [],
+      repositories: [],
       skills: [{ name: 'x', items: [{ tech: 'a', principle: PENDING }] }],
       vision: { lead: 'ok', body: [PENDING] },
     }
@@ -155,6 +156,7 @@ describe('findPendingContent', () => {
       ...content,
       profile: { ...content.profile, affiliations: [] },
       cases: [],
+      repositories: [],
       skills: [],
       vision: { lead: 'ok', body: ['ok'] },
     }
@@ -189,16 +191,28 @@ describe('文体', () => {
     const timeline = c.cases.flatMap((x) =>
       x.kind === 'timeline'
         ? [x.background, x.decision, x.reflection, x.result, x.bridge ?? '']
-        : [],
+        : [x.history],
     )
-    return [
-      c.profile.statement,
-      ...c.values.map((v) => v.body),
-      ...timeline,
-      ...c.skills.flatMap((s) => s.items.map((i) => i.principle)),
-      c.vision.lead,
-      ...c.vision.body,
-    ].filter((s) => s !== '')
+    const repositories = c.repositories.flatMap((r) => [
+      r.overview,
+      r.why,
+      r.thought,
+      r.now,
+    ])
+    return (
+      [
+        c.profile.statement,
+        ...c.values.map((v) => v.body),
+        ...timeline,
+        ...c.skills.flatMap((s) => s.items.map((i) => i.principle)),
+        c.vision.lead,
+        ...c.vision.body,
+        ...repositories,
+      ]
+        // 未確定の印（__PENDING__）は文末の判定から外す
+        .map(withoutPending)
+        .filter((s) => s !== '')
+    )
   }
 
   it('すべての文が丁寧語で終わる', () => {
