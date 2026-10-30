@@ -9,17 +9,17 @@ import { VisualPanel } from './components/VisualPanel.tsx'
 import { content } from './content/index.ts'
 
 export default function App() {
-  const { profile, values, cases, skills, vision } = content
+  const { profile, values, cases, skills, vision, site } = content
   return (
     <>
       <VisualPanel profile={profile} />
       <div className="lg:w-1/2">
         <div className="mx-auto max-w-xl px-6 sm:px-10">
-          <Hero profile={profile} />
+          <Hero profile={profile} repositoriesLabel={site.navLabel} />
           <main>
             <About profile={profile} lead={vision.lead} />
             <Philosophy values={values} />
-            <Cases cases={cases} />
+            <Cases cases={cases} repositoriesLinkLabel={site.casesLinkLabel} />
             <Skills skills={skills} />
             <Vision vision={vision} />
           </main>

@@ -1,14 +1,16 @@
+import { withoutPending } from '../content/pending.ts'
+import { REPOSITORIES_PATH } from '../content/site.ts'
 import type { Profile } from '../content/types.ts'
 import { ContactList } from './ContactList.tsx'
 
-const NAV = [
-  { id: 'about', label: 'わたしについて' },
-  { id: 'cases', label: '実績' },
-  { id: 'skills', label: '技術' },
-  { id: 'contact', label: 'これから' },
+const SECTIONS = [
+  { href: '#about', label: 'わたしについて' },
+  { href: '#cases', label: '実績' },
+  { href: '#skills', label: '技術' },
+  { href: '#contact', label: 'これから' },
 ] as const
 
-type Props = { profile: Profile }
+type Props = { profile: Profile; repositoriesLabel: string }
 
 function Catchcopy({ text, emphasis }: { text: string; emphasis: string }) {
   const head = text.endsWith(emphasis) ? text.slice(0, -emphasis.length) : text
@@ -22,14 +24,18 @@ function Catchcopy({ text, emphasis }: { text: string; emphasis: string }) {
   )
 }
 
-export function Hero({ profile }: Props) {
+export function Hero({ profile, repositoriesLabel }: Props) {
+  const nav = [
+    ...SECTIONS,
+    { href: REPOSITORIES_PATH, label: withoutPending(repositoriesLabel) },
+  ]
   return (
     <header id="hero" className="flex min-h-svh flex-col pt-8">
       <nav className="flex flex-wrap items-center justify-between gap-4 text-xs tracking-widest">
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
-          {NAV.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`} className="hover:text-orange-text">
+          {nav.map((item) => (
+            <li key={item.href}>
+              <a href={item.href} className="hover:text-orange-text">
                 {item.label}
               </a>
             </li>

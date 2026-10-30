@@ -101,3 +101,18 @@ test('スマホでは章と章の間を空けすぎない', async ({ page }, tes
     expect(gap).toBeLessThanOrEqual(112)
   }
 })
+
+test('ヘッダーと実績の最後から、リポジトリ一覧へ同じタブで移れる', async ({
+  page,
+}) => {
+  await page.goto('/')
+  const navLink = page.locator('#hero nav a[href="/repositories/"]')
+  const casesLink = page.locator('#cases a[href="/repositories/"]')
+  for (const link of [navLink, casesLink]) {
+    await expect(link).toBeVisible()
+    await expect(link).not.toHaveAttribute('target', '_blank')
+  }
+  await navLink.click()
+  await expect(page).toHaveURL(/\/repositories\/$/)
+  await expect(page.locator('[data-repository]').first()).toBeVisible()
+})

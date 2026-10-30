@@ -114,4 +114,8 @@ export type SiteText = {
     forkSuffix: string
     relatedCase: string
   }
+  /** ヘッダーのナビに出す、一覧ページへの項目名 */
+  navLabel: string
+  /** 実績（Cases）の最後に置く、一覧ページへのリンク */
+  casesLinkLabel: string
 }

@@ -14,4 +14,6 @@ export const site: SiteText = {
     forkSuffix: ' のフォーク',
     relatedCase: 'トップの実績で詳しく読む',
   },
+  navLabel: 'つくってきたもの__PENDING__',
+  casesLinkLabel: '成果物をまとめたページはこちら',
 }
