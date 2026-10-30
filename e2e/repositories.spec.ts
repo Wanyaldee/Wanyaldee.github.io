@@ -112,3 +112,16 @@ test('quantum-visualizer は公開ページへ新しいタブで移れる', asyn
   await expect(link).toBeVisible()
   await expect(link).toHaveAttribute('target', '_blank')
 })
+
+test('リポジトリを公開していない成果物として、オフイベントLPへ移れる', async ({
+  page,
+}) => {
+  await page.goto('/repositories/')
+  const lp = page.locator('[data-work="offevent-lp"]')
+  const link = lp.locator('a[href="https://event.awajiempire.net/"]')
+  await expect(link).toBeVisible()
+  await expect(link).toHaveAttribute('target', '_blank')
+  await expect(lp.locator('a[href*="github.com"]')).toHaveCount(0)
+  // リポジトリの一覧（7件）には混ぜない
+  await expect(page.locator('[data-repository]')).toHaveCount(REPOSITORY_COUNT)
+})

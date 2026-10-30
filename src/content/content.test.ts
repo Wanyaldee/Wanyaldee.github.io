@@ -210,6 +210,7 @@ describe('文体', () => {
         c.vision.lead,
         ...c.vision.body,
         ...repositories,
+        ...c.works.map((w) => w.overview),
       ]
         // 未確定の印（__PENDING__）は文末の判定から外す
         .map(withoutPending)

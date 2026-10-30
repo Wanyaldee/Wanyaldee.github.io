@@ -128,3 +128,16 @@ describe('一覧ページの HTML の head', () => {
     expect(html).toContain(`property="og:description" content="${lead}"`)
   })
 })
+
+describe('リポジトリを公開していない成果物', () => {
+  it('オフイベントLPを、公開中のページへのリンク付きで載せる', () => {
+    expect(content.works.map((w) => w.id)).toEqual(['offevent-lp'])
+    const lp = content.works[0]
+    expect(lp.page.href).toBe('https://event.awajiempire.net/')
+    expect(content.cases.map((c) => c.id)).toContain(lp.relatedCase)
+  })
+
+  it('非公開のリポジトリへはリンクしない', () => {
+    expect(JSON.stringify(content.works)).not.toContain('github.com')
+  })
+})

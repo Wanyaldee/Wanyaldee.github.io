@@ -3,6 +3,7 @@ import { values } from './philosophy.ts'
 import { profile } from './profile.ts'
 import { repositories } from './repositories.ts'
 import { site } from './site.ts'
+import { works } from './works.ts'
 import { skills } from './skills.ts'
 import type { Content } from './types.ts'
 import { vision } from './vision.ts'
@@ -15,4 +16,5 @@ export const content: Content = {
   vision,
   repositories,
   site,
+  works,
 }

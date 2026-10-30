@@ -2,10 +2,11 @@ import { content } from '../content/index.ts'
 import { withoutPending } from '../content/pending.ts'
 import { RepositoryItem } from '../components/RepositoryItem.tsx'
 import { SiteFooter } from '../components/SiteFooter.tsx'
+import { WorkItem } from '../components/WorkItem.tsx'
 
 // リポジトリ一覧ページ（/repositories/）。トップとちがい、本文だけの1カラム
 export function RepositoriesPage() {
-  const { profile, repositories, site } = content
+  const { profile, repositories, site, works } = content
   const text = site.repositoriesPage
   return (
     <div className="mx-auto max-w-xl px-6 sm:px-10">
@@ -33,6 +34,21 @@ export function RepositoriesPage() {
             </li>
           ))}
         </ol>
+        <section aria-labelledby="works-title" className="mt-20">
+          <h2 id="works-title" className="text-sm font-bold tracking-widest">
+            {withoutPending(text.worksTitle)}
+          </h2>
+          <p className="mt-4 text-sm leading-loose text-ink-sub">
+            {withoutPending(text.worksLead)}
+          </p>
+          <ul>
+            {works.map((work) => (
+              <li key={work.id}>
+                <WorkItem work={work} text={text} />
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
       <SiteFooter profile={profile} license={site.license} />
     </div>

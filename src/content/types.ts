@@ -101,6 +101,17 @@ export type Content = {
   vision: Vision
   repositories: Repository[]
   site: SiteText
+  works: Work[]
+}
+
+// リポジトリは公開していない（OSS ではない）が、公開している成果物
+export type Work = {
+  id: string
+  name: string
+  overview: string
+  page: Link
+  /** トップの Case と重なるなら、その Case の id */
+  relatedCase?: string
 }
 
 // トップと一覧ページで使う、ページの枠まわりの文言
@@ -115,6 +126,8 @@ export type SiteText = {
     /** フォーク元の名前の後ろにつける（「Zed のフォーク」） */
     forkSuffix: string
     relatedCase: string
+    worksTitle: string
+    worksLead: string
   }
   /** ヘッダーのナビに出す、一覧ページへの項目名 */
   navLabel: string

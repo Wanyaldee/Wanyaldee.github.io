@@ -13,6 +13,9 @@ export const site: SiteText = {
     github: 'GitHub',
     forkSuffix: ' のフォーク',
     relatedCase: 'トップの実績で詳しく読む',
+    worksTitle: 'リポジトリを公開していない成果物__PENDING__',
+    worksLead:
+      'OSS ではなく、リポジトリも公開していませんが、成果物として載せています。__PENDING__',
   },
   navLabel: 'つくってきたもの__PENDING__',
   casesLinkLabel: '成果物をまとめたページはこちら',
