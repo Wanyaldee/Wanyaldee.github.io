@@ -1,10 +1,10 @@
 <!-- public/og.png の元。1200x630 でスクリーンショットして更新する -->
 <!doctype html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Sans+JP:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -12,54 +12,88 @@
         margin: 0;
         width: 1200px;
         height: 630px;
+        display: flex;
         background: #fff7ec;
-        font-family: 'Noto Sans JP';
         color: #3b2416;
+        font-family: 'Noto Sans JP', sans-serif;
+        font-feature-settings: 'palt';
+      }
+      .text {
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0 90px;
-        box-sizing: border-box;
+        padding: 0 80px;
       }
-      .e {
+      .eyebrow {
         color: #b4520f;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        font-size: 24px;
+        font-size: 18px;
+        letter-spacing: 0.3em;
       }
-      .c {
-        font-size: 56px;
-        font-weight: 700;
-        line-height: 1.4;
+      .name-en {
+        margin-top: 20px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 104px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.02em;
+      }
+      .name-ja {
         margin-top: 16px;
+        color: #6b4c38;
+        font-size: 22px;
+        letter-spacing: 0.3em;
       }
-      .c span {
+      .catch {
+        margin-top: 48px;
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 1.8;
+        letter-spacing: 0.1em;
+      }
+      .catch span {
         color: #b4520f;
       }
-      .b {
-        margin-top: 36px;
+      .visual {
+        position: relative;
+        width: 420px;
+        overflow: hidden;
         background: #f6923f;
-        border-radius: 24px;
-        padding: 24px 32px;
-        font-size: 30px;
-        font-weight: 700;
       }
-      .b small {
-        font-weight: 400;
-        font-size: 24px;
-        margin-left: 16px;
+      .visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 30%;
+      }
+      .credit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 80px 24px 18px;
+        background: linear-gradient(to top, rgb(255 247 236 / 0.9), transparent);
+        color: #6b4c38;
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        text-align: right;
       }
     </style>
   </head>
   <body>
-    <div class="e">TECHNICAL LEADER / INFRASTRUCTURE</div>
-    <div class="c">
-      現場の痛みを背負い、<br />共通の目標を掲げて<br />挑戦を支える<span
-        >技術リーダー</span
-      >
+    <div class="text">
+      <div class="eyebrow">TECHNICAL LEADER / INFRASTRUCTURE</div>
+      <div class="name-en">Koya Okada</div>
+      <div class="name-ja">岡田 昊也 ・ わにゃ（Wanyaldee）</div>
+      <div class="catch">
+        現場の痛みを背負い、<br />共通の目標を掲げて挑戦を支える<br /><span
+          >技術リーダー</span
+        >
+      </div>
     </div>
-    <div class="b">
-      岡田 昊也<small>Koya Okada ・ わにゃ（Wanyaldee）</small>
+    <div class="visual">
+      <img src="../public/avatar_all.jpg" alt="" />
+      <div class="credit">Illustration by ᴸⁱʸ</div>
     </div>
   </body>
 </html>
