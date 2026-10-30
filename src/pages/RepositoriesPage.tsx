@@ -1,5 +1,6 @@
 import { content } from '../content/index.ts'
 import { withoutPending } from '../content/pending.ts'
+import { RepositoryItem } from '../components/RepositoryItem.tsx'
 
 // リポジトリ一覧ページ（/repositories/）。トップとちがい、本文だけの1カラム
 export function RepositoriesPage() {
@@ -26,8 +27,8 @@ export function RepositoriesPage() {
       <main className="py-12 sm:py-20">
         <ol>
           {repositories.map((repo) => (
-            <li key={repo.id} data-repository>
-              {repo.id}
+            <li key={repo.id}>
+              <RepositoryItem repo={repo} text={text} />
             </li>
           ))}
         </ol>

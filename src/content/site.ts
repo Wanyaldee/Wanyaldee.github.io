@@ -10,5 +10,8 @@ export const site: SiteText = {
     lead: '主にわたしが書いていて、OSS ライセンスで公開しているリポジトリです。新しく始めた順に並べています。__PENDING__',
     back: 'トップへ戻る',
     details: '詳しく見る',
+    github: 'GitHub',
+    forkSuffix: ' のフォーク',
+    relatedCase: 'トップの実績で詳しく読む',
   },
 }

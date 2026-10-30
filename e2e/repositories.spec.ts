@@ -17,3 +17,67 @@ test('再読み込みしても一覧ページのまま', async ({ page }) => {
   await page.reload()
   await expect(page.locator('[data-repository]')).toHaveCount(REPOSITORY_COUNT)
 })
+
+test('各リポジトリは概要が見え、詳細は閉じていて、開ける', async ({ page }) => {
+  await page.goto('/repositories/')
+  const first = page.locator('[data-repository]').first()
+  await expect(first.locator('[data-overview]')).toBeVisible()
+  await expect(first.locator('[data-details-body]')).toBeHidden()
+
+  // 閉じたままでも GitHub へのリンクは押せる
+  const github = first.getByRole('link', { name: /GitHub/ })
+  await expect(github).toBeVisible()
+  await expect(github).toHaveAttribute(
+    'href',
+    'https://github.com/Wanyaldee/Wanyaldee.github.io',
+  )
+  await expect(github).toHaveAttribute('target', '_blank')
+
+  // キーボードで開ける
+  await first.getByText('詳しく見る').focus()
+  await page.keyboard.press('Enter')
+  const body = first.locator('[data-details-body]')
+  await expect(body).toBeVisible()
+  for (const label of ['Why', 'Thought', 'Now']) {
+    await expect(body).toContainText(label)
+  }
+})
+
+test('citadel には Zed のフォークであることが出る', async ({ page }) => {
+  await page.goto('/repositories/')
+  const citadel = page.locator('[data-repository="Wanyaldee/citadel"]')
+  await expect(citadel).toContainText('Zed のフォーク')
+  await expect(
+    citadel.locator('a[href="https://github.com/zed-industries/zed"]'),
+  ).toBeVisible()
+})
+
+test('Awaji-Empire-Agent からトップの実績へ戻れる', async ({ page }) => {
+  await page.goto('/repositories/')
+  const agent = page.locator(
+    '[data-repository="Awaji-Empire-Technical-Department/Awaji-Empire-Agent"]',
+  )
+  const link = agent.locator('a[href="/#cases"]')
+  await expect(link).toBeVisible()
+  await expect(link).not.toHaveAttribute('target', '_blank')
+})
+
+test('一覧ページは横にはみ出さず、左罫線を使わない', async ({ page }) => {
+  await page.goto('/repositories/')
+  // 詳細もすべて開いた状態で確かめる
+  for (const summary of await page.locator('summary').all()) {
+    await summary.click()
+  }
+  const fitsWidth = await page.evaluate(
+    () =>
+      document.documentElement.scrollWidth <=
+      document.documentElement.clientWidth,
+  )
+  expect(fitsWidth).toBe(true)
+  const leftBorders = await page.evaluate(() =>
+    [...document.querySelectorAll('main *')]
+      .filter((el) => parseFloat(getComputedStyle(el).borderLeftWidth) > 0)
+      .map((el) => el.outerHTML.slice(0, 80)),
+  )
+  expect(leftBorders).toEqual([])
+})

@@ -109,5 +109,9 @@ export type SiteText = {
     lead: string
     back: string
     details: string
+    github: string
+    /** フォーク元の名前の後ろにつける（「Zed のフォーク」） */
+    forkSuffix: string
+    relatedCase: string
   }
 }
