@@ -6,23 +6,23 @@ export const REPOSITORIES_PATH = '/repositories/'
 export const site: SiteText = {
   repositoriesPage: {
     label: 'Repositories',
-    title: 'つくってきたもの__PENDING__',
-    lead: '主にわたしが書いていて、OSS ライセンスで公開しているリポジトリです。新しく始めた順に並べています。__PENDING__',
+    title: 'つくってきたもの',
+    lead: '主にわたしが書いていて、OSS ライセンスで公開しているリポジトリです。新しく始めた順に並べています。',
     back: 'トップへ戻る',
     details: '詳しく見る',
     github: 'GitHub',
     forkSuffix: ' のフォーク',
     relatedCase: 'トップの実績で詳しく読む',
-    worksTitle: 'リポジトリを公開していない成果物__PENDING__',
+    worksTitle: 'リポジトリを公開していない成果物',
     worksLead:
-      'OSS ではなく、リポジトリも公開していませんが、成果物として載せています。__PENDING__',
+      'OSS ではなく、リポジトリも公開していませんが、成果物として載せています。',
   },
-  navLabel: 'つくってきたもの__PENDING__',
+  navLabel: 'つくってきたもの',
   casesLinkLabel: '成果物をまとめたページはこちら',
   license: {
-    code: 'このサイトのコードは MIT License です。__PENDING__',
+    code: 'このサイトのコードは MIT License です。',
     excluded:
-      '文章（© Wanyaldee）とイラスト（© ᴸⁱʸ さん）は MIT の対象外です。__PENDING__',
+      '文章（© Wanyaldee）とイラスト（© ᴸⁱʸ さん）は MIT の対象外です。',
     licenseHref:
       'https://github.com/Wanyaldee/Wanyaldee.github.io/blob/main/LICENSE',
   },
