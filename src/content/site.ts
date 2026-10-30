@@ -16,4 +16,11 @@ export const site: SiteText = {
   },
   navLabel: 'つくってきたもの__PENDING__',
   casesLinkLabel: '成果物をまとめたページはこちら',
+  license: {
+    code: 'このサイトのコードは MIT License です。__PENDING__',
+    excluded:
+      '文章（© Wanyaldee）とイラスト（© ᴸⁱʸ さん）は MIT の対象外です。__PENDING__',
+    licenseHref:
+      'https://github.com/Wanyaldee/Wanyaldee.github.io/blob/main/LICENSE',
+  },
 }

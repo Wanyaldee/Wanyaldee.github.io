@@ -118,4 +118,6 @@ export type SiteText = {
   navLabel: string
   /** 実績（Cases）の最後に置く、一覧ページへのリンク */
   casesLinkLabel: string
+  /** フッターに出すライセンスの表記と適用範囲 */
+  license: { code: string; excluded: string; licenseHref: string }
 }

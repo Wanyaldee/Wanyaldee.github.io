@@ -1,8 +1,8 @@
 import { About } from './components/About.tsx'
 import { Cases } from './components/Cases.tsx'
-import { ExternalLink } from './components/ExternalLink.tsx'
 import { Hero } from './components/Hero.tsx'
 import { Philosophy } from './components/Philosophy.tsx'
+import { SiteFooter } from './components/SiteFooter.tsx'
 import { Skills } from './components/Skills.tsx'
 import { Vision } from './components/Vision.tsx'
 import { VisualPanel } from './components/VisualPanel.tsx'
@@ -23,17 +23,7 @@ export default function App() {
             <Skills skills={skills} />
             <Vision vision={vision} />
           </main>
-          <footer className="space-y-2 border-t border-ink/15 py-10 text-xs tracking-widest text-ink-muted">
-            <p>
-              <ExternalLink
-                link={profile.avatar.credit}
-                className="underline-offset-4 hover:underline"
-              />
-            </p>
-            <p className="font-display text-sm">
-              © {profile.nameEn} ({profile.handle})
-            </p>
-          </footer>
+          <SiteFooter profile={profile} license={site.license} />
         </div>
       </div>
     </>

@@ -239,3 +239,17 @@ describe('vision', () => {
     )
   })
 })
+
+describe('license', () => {
+  it('コードは MIT で、LICENSE ファイルへリンクする', () => {
+    expect(content.site.license.licenseHref).toBe(
+      'https://github.com/Wanyaldee/Wanyaldee.github.io/blob/main/LICENSE',
+    )
+    expect(content.site.license.code).toContain('MIT')
+  })
+
+  it('文章とイラストは対象外であることを書く', () => {
+    expect(content.site.license.excluded).toContain('文章')
+    expect(content.site.license.excluded).toContain('イラスト')
+  })
+})

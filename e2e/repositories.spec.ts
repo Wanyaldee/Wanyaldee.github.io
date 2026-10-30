@@ -81,3 +81,23 @@ test('一覧ページは横にはみ出さず、左罫線を使わない', async
   )
   expect(leftBorders).toEqual([])
 })
+
+for (const path of ['/', '/repositories/']) {
+  test(`${path} のフッターに、ライセンスと適用範囲、絵のクレジットがある`, async ({
+    page,
+  }) => {
+    await page.goto(path)
+    const footer = page.locator('footer')
+    await expect(
+      footer.locator(
+        'a[href="https://github.com/Wanyaldee/Wanyaldee.github.io/blob/main/LICENSE"]',
+      ),
+    ).toBeVisible()
+    await expect(footer).toContainText('MIT')
+    await expect(footer).toContainText('文章')
+    await expect(footer).toContainText('イラスト')
+    await expect(
+      footer.locator('a[href="https://x.com/zZ5lALiyp"]'),
+    ).toBeVisible()
+  })
+}

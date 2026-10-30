@@ -1,10 +1,11 @@
 import { content } from '../content/index.ts'
 import { withoutPending } from '../content/pending.ts'
 import { RepositoryItem } from '../components/RepositoryItem.tsx'
+import { SiteFooter } from '../components/SiteFooter.tsx'
 
 // リポジトリ一覧ページ（/repositories/）。トップとちがい、本文だけの1カラム
 export function RepositoriesPage() {
-  const { repositories, site } = content
+  const { profile, repositories, site } = content
   const text = site.repositoriesPage
   return (
     <div className="mx-auto max-w-xl px-6 sm:px-10">
@@ -33,6 +34,7 @@ export function RepositoriesPage() {
           ))}
         </ol>
       </main>
+      <SiteFooter profile={profile} license={site.license} />
     </div>
   )
 }
