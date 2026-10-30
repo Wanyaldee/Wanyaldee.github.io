@@ -58,6 +58,15 @@ export function RepositoryItem({ repo, text }: Props) {
             {repo.page.label} →
           </ExternalLink>
         )}
+        {repo.relatedLinks?.map((link) => (
+          <ExternalLink
+            key={link.href}
+            link={link}
+            className="underline underline-offset-4 hover:text-orange-text"
+          >
+            {link.label} →
+          </ExternalLink>
+        ))}
       </p>
       <details className="group mt-4">
         <summary className="inline-block cursor-pointer border-b border-ink/70 pb-1 text-xs tracking-widest hover:border-orange-text hover:text-orange-text">

@@ -92,10 +92,16 @@ export const repositories: Repository[] = [
     language: 'Python',
     license: 'MIT',
     relatedCase: 'awaji-agent',
+    relatedLinks: [
+      {
+        label: '社畜天狗さんの YouTube チャンネル',
+        href: 'https://www.youtube.com/@Shachiku_Tengu',
+      },
+    ],
     status: '運用中__PENDING__',
     overview:
       'Discord サーバー「淡路帝国」の運営を支える Bot とダッシュボードです。',
-    why: 'コミュニティの運営を仕組みで支えるために始めました。詳しくはトップページの CASE 01 に書いています。__PENDING__',
+    why: 'ゆっくり実況者の社畜天狗さんの Discord コミュニティ「淡路帝国」が、わたしの活動の始まりです。その運営を仕組みで支えるために始めました。__PENDING__',
     thought: '判断の経緯は CASE 01 に書いています。',
     now: '運用と開発を続けています。',
   },

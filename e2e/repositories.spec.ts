@@ -125,3 +125,19 @@ test('リポジトリを公開していない成果物として、オフイベ�
   // リポジトリの一覧（7件）には混ぜない
   await expect(page.locator('[data-repository]')).toHaveCount(REPOSITORY_COUNT)
 })
+
+test('Awaji-Empire-Agent とオフイベントLPから、社畜天狗さんのチャンネルへ移れる', async ({
+  page,
+}) => {
+  await page.goto('/repositories/')
+  for (const item of [
+    '[data-repository="Awaji-Empire-Technical-Department/Awaji-Empire-Agent"]',
+    '[data-work="offevent-lp"]',
+  ]) {
+    const link = page.locator(
+      `${item} a[href="https://www.youtube.com/@Shachiku_Tengu"]`,
+    )
+    await expect(link).toBeVisible()
+    await expect(link).toHaveAttribute('target', '_blank')
+  }
+})

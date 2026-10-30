@@ -19,6 +19,15 @@ export function WorkItem({ work, text }: Props) {
         >
           {work.page.label} →
         </ExternalLink>
+        {work.relatedLinks?.map((link) => (
+          <ExternalLink
+            key={link.href}
+            link={link}
+            className="underline underline-offset-4 hover:text-orange-text"
+          >
+            {link.label} →
+          </ExternalLink>
+        ))}
         {work.relatedCase && (
           <a
             href="/#cases"

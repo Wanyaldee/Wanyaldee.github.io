@@ -11,7 +11,7 @@ export const cases: Case[] = [
     role: 'プロジェクトリード / インフラ設計・運用',
     title: 'Awaji-Empire-Agent & 700人規模コミュニティ基盤',
     background:
-      'イベント直前に、外部ドメイン事業者の重大インシデントの兆候を察知しました。',
+      'ゆっくり実況者の社畜天狗さんの Discord コミュニティ「淡路帝国」が、わたしの活動の始まりです。その基盤を運用する中で、イベント直前に、外部ドメイン事業者の重大インシデントの兆候を察知しました。',
     decision:
       'チームと「イベントの安全な完遂」という目的を再共有し、合意を取ったうえで Cloudflare Registrar への移管を即断しました。',
     reflection:
@@ -33,6 +33,10 @@ export const cases: Case[] = [
         label: 'Docker Compose で開発環境を再現',
         href: `${AWAJI_AGENT_REPO}/commit/df9fff7`,
       },
+      {
+        label: '社畜天狗さんの YouTube チャンネル',
+        href: 'https://www.youtube.com/@Shachiku_Tengu',
+      },
     ],
   },
   {
@@ -42,7 +46,7 @@ export const cases: Case[] = [
     role: 'LP制作担当',
     title: '淡路帝国オフイベント（2027.3.6 ラピスホール神戸）告知LP',
     background:
-      '着席160〜200名規模のオフイベントで、告知LPと並行して、当日運営システムも計画していました。',
+      '社畜天狗さんが主催する着席160〜200名規模のオフイベントで、告知LPと並行して、当日運営システムも計画していました。',
     decision:
       '運営システムの設計方針で相方と意見が衝突しました。運営側から、当日に使いこなせるか、スタッフの訓練が必要になる、という理由で不要と判断され、思い切って使わないと決めました。',
     reflection:
@@ -52,7 +56,13 @@ export const cases: Case[] = [
     bridge:
       'CASE 01 の「目的の再共有」と同じく、作る前に目標をそろえることの大切さを学びました。',
     // リポジトリは非公開なので GitHub へはリンクしない
-    links: [{ label: 'イベントLP', href: 'https://event.awajiempire.net/' }],
+    links: [
+      { label: 'イベントLP', href: 'https://event.awajiempire.net/' },
+      {
+        label: '社畜天狗さんの YouTube チャンネル',
+        href: 'https://www.youtube.com/@Shachiku_Tengu',
+      },
+    ],
   },
   {
     kind: 'nedo',

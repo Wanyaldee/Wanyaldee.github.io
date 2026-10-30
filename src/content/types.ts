@@ -79,6 +79,8 @@ export type Repository = {
   forkOf?: Link
   /** トップの Case と重なるなら、その Case の id */
   relatedCase?: string
+  /** 関係する人やページへのリンク（GitHub・公開ページのほか） */
+  relatedLinks?: Link[]
   status: string
   overview: string
   why: string
@@ -112,6 +114,8 @@ export type Work = {
   page: Link
   /** トップの Case と重なるなら、その Case の id */
   relatedCase?: string
+  /** 関係する人やページへのリンク（GitHub・公開ページのほか） */
+  relatedLinks?: Link[]
 }
 
 // トップと一覧ページで使う、ページの枠まわりの文言
