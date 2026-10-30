@@ -58,6 +58,7 @@ describe('cases', () => {
   it('NEDO はプログラム名・チーム名・課題名・役割・経緯・リンク以外を持たない', () => {
     const nedo = findCase('nedo')
     expect(Object.keys(nedo).sort()).toEqual([
+      'connections',
       'history',
       'id',
       'kind',
@@ -200,7 +201,7 @@ describe('文体', () => {
     const timeline = c.cases.flatMap((x) =>
       x.kind === 'timeline'
         ? [x.background, x.decision, x.reflection, x.result, x.bridge ?? '']
-        : [x.history],
+        : [x.history, ...x.connections.map((c) => c.body)],
     )
     const repositories = c.repositories.flatMap((r) => [
       r.overview,
@@ -286,5 +287,55 @@ describe('活動の始まり（社畜天狗さんのコミュニティ）', () =
     const lp = content.works.find((w) => w.id === 'offevent-lp')
     expect(lp?.overview).toContain('社畜天狗さん')
     expect(lp?.relatedLinks?.map((l) => l.href)).toContain(CHANNEL)
+  })
+})
+
+describe('NEDO からのつながり', () => {
+  function nedo() {
+    const item = findCase('nedo')
+    if (item.kind !== 'nedo') throw new Error('nedo expected')
+    return item
+  }
+
+  it('DCON2027 と JQCA の2つを、この順で書く', () => {
+    expect(nedo().connections.map((c) => c.id)).toEqual(['dcon2027', 'jqca'])
+  })
+
+  it('DCON2027 は、PROCON2026 の予選で落ちたところから一次審査通過までを書く', () => {
+    const dcon = nedo().connections[0]
+    for (const part of [
+      'PROCON2026',
+      '予選で落ちました',
+      '香川高専 教育改革委員会',
+      '道真の神託',
+      '一次書類審査を通過',
+      '二次審査',
+    ]) {
+      expect(dcon.body).toContain(part)
+    }
+    expect(dcon.links.map((l) => l.href)).toEqual([
+      'https://dcon.ai/teams/#1st',
+    ])
+  })
+
+  it('JQCA は、プロジェクトリーダーをきっかけに参画したことと JGAIA への所属を書く', () => {
+    const jqca = nedo().connections[1]
+    for (const part of ['プロジェクトリーダー', '大阪支部', 'JGAIA']) {
+      expect(jqca.body).toContain(part)
+    }
+    expect(jqca.links.map((l) => l.href)).toEqual([
+      'https://www.jqca.org/',
+      'https://www.jgaia.org/',
+    ])
+  })
+
+  it('12月11日のワークショップは、外部の記事が出るまで載せない', () => {
+    expect(JSON.stringify(nedo())).not.toMatch(/ワークショップ|12月11日/)
+  })
+
+  it('所属に日本生成AI協会（JGAIA）を加える', () => {
+    expect(content.profile.affiliations.map((a) => a.ja)).toContain(
+      '日本生成AI協会（JGAIA）所属',
+    )
   })
 })

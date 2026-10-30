@@ -39,6 +39,11 @@ test('主要セクションと名前が表示され、横にはみ出さない',
   await expect(cases).toContainText('NEDO懸賞金活用型プログラム Season 2')
   await expect(cases).toContainText('Season 1 にも参加しましたが')
   await expect(cases).not.toContainText('懸賞金チャレンジ')
+  await expect(cases).toContainText('DCON2027')
+  await expect(
+    cases.locator('a[href="https://dcon.ai/teams/#1st"]'),
+  ).toBeVisible()
+  await expect(cases.locator('a[href="https://www.jqca.org/"]')).toBeVisible()
 
   // アイコン（ビジュアル面）とクレジット
   const visual = page.locator('[data-visual] img[src="/avatar_all.jpg"]')
@@ -87,7 +92,7 @@ test('スマホでは章と章の間を空けすぎない', async ({ page }, tes
   await page.goto('/')
 
   const gaps = await page.evaluate(() => {
-    const sections = [...document.querySelectorAll('main section')]
+    const sections = [...document.querySelectorAll('main > section')]
     return sections.slice(1).map((section, i) => {
       const prev = sections[i].lastElementChild as HTMLElement
       const title = section.querySelector('h2') as HTMLElement
