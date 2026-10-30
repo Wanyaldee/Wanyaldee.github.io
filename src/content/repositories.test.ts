@@ -101,6 +101,15 @@ describe('repositories の事実関係', () => {
   })
 })
 
+describe('公開ページ', () => {
+  it('quantum-visualizer は公開ページへ直接リンクする', () => {
+    const repo = findRepository('Wanyaldee/quantum-visualizer')
+    expect(repo.page?.href).toBe(
+      'https://wanyaldee.github.io/quantum-visualizer/',
+    )
+  })
+})
+
 describe('一覧ページの HTML の head', () => {
   // HTML は公開前ゲートの外にあるので、content の文言と食い違わないことをここで確かめる。
   // 整形で属性が改行されても比べられるよう、空白をならしてから見る

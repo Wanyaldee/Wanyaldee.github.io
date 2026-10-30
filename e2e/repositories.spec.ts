@@ -101,3 +101,14 @@ for (const path of ['/', '/repositories/']) {
     ).toBeVisible()
   })
 }
+
+test('quantum-visualizer は公開ページへ新しいタブで移れる', async ({
+  page,
+}) => {
+  await page.goto('/repositories/')
+  const link = page.locator(
+    '[data-repository="Wanyaldee/quantum-visualizer"] a[href="https://wanyaldee.github.io/quantum-visualizer/"]',
+  )
+  await expect(link).toBeVisible()
+  await expect(link).toHaveAttribute('target', '_blank')
+})

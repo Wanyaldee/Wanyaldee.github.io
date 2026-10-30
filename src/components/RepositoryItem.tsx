@@ -43,13 +43,21 @@ export function RepositoryItem({ repo, text }: Props) {
       <p data-overview className="mt-4 text-sm leading-loose">
         {withoutPending(repo.overview)}
       </p>
-      <p className="mt-4 text-xs tracking-widest">
+      <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs tracking-widest">
         <ExternalLink
           link={{ label: text.github, href: repositoryUrl(repo) }}
           className="underline underline-offset-4 hover:text-orange-text"
         >
           {text.github} →
         </ExternalLink>
+        {repo.page && (
+          <ExternalLink
+            link={repo.page}
+            className="underline underline-offset-4 hover:text-orange-text"
+          >
+            {repo.page.label} →
+          </ExternalLink>
+        )}
       </p>
       <details className="group mt-4">
         <summary className="inline-block cursor-pointer border-b border-ink/70 pb-1 text-xs tracking-widest hover:border-orange-text hover:text-orange-text">

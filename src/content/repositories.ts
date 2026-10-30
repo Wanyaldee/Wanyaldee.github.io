@@ -18,6 +18,10 @@ export const repositories: Repository[] = [
   },
   {
     id: 'Wanyaldee/quantum-visualizer',
+    page: {
+      label: '公開ページ',
+      href: 'https://wanyaldee.github.io/quantum-visualizer/',
+    },
     startedOn: '2026-10-23',
     language: 'TypeScript',
     license: 'MIT',

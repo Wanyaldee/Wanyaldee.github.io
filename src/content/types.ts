@@ -73,6 +73,8 @@ export type Repository = {
   language: string
   /** 表示用（'MIT'、'Apache-2.0 / GPL-3.0' など） */
   license: string
+  /** 動いているものを見られる公開ページ（あれば） */
+  page?: Link
   /** フォークなら元のリポジトリ */
   forkOf?: Link
   /** トップの Case と重なるなら、その Case の id */
