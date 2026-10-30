@@ -34,6 +34,12 @@ test('主要セクションと名前が表示され、横にはみ出さない',
   await expect(lead).toContainText('ありがとう')
   await expect(lead).toHaveCSS('writing-mode', 'horizontal-tb')
 
+  // NEDO は正式な名称で書き、Season 1 からの経緯も載せる
+  const cases = page.locator('#cases')
+  await expect(cases).toContainText('NEDO懸賞金活用型プログラム Season 2')
+  await expect(cases).toContainText('Season 1 にも参加しましたが')
+  await expect(cases).not.toContainText('懸賞金チャレンジ')
+
   // アイコン（ビジュアル面）とクレジット
   const visual = page.locator('[data-visual] img[src="/avatar_all.jpg"]')
   await expect(visual).toBeVisible()
@@ -74,4 +80,24 @@ test('主要セクションと名前が表示され、横にはみ出さない',
     'content',
     'https://wanyaldee.github.io/og.png',
   )
+})
+
+test('スマホでは章と章の間を空けすぎない', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile')
+  await page.goto('/')
+
+  const gaps = await page.evaluate(() => {
+    const sections = [...document.querySelectorAll('main section')]
+    return sections.slice(1).map((section, i) => {
+      const prev = sections[i].lastElementChild as HTMLElement
+      const title = section.querySelector('h2') as HTMLElement
+      return (
+        title.getBoundingClientRect().top - prev.getBoundingClientRect().bottom
+      )
+    })
+  })
+  expect(gaps.length).toBeGreaterThan(0)
+  for (const gap of gaps) {
+    expect(gap).toBeLessThanOrEqual(112)
+  }
 })

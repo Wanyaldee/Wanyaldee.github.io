@@ -17,6 +17,6 @@ export const values: Value[] = [
     key: 'mutual',
     titleEn: 'Mutual Acceleration',
     titleJa: '知見の相互還元',
-    body: '学術・先端研究（NEDO）と泥臭いインフラ運用の知見を互いに還元し、社会基盤を前に進めます。',
+    body: '学術・先端研究（NEDO懸賞金活用型プログラム）と泥臭いインフラ運用の知見を互いに還元し、社会基盤を前に進めます。',
   },
 ]

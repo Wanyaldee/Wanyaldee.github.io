@@ -7,10 +7,10 @@ export function Section({ id, label, title, children }: Props) {
   return (
     <section
       id={id}
-      className="scroll-mt-8 py-20 sm:py-28"
+      className="scroll-mt-8 py-12 sm:py-28"
       aria-labelledby={`${id}-title`}
     >
-      <h2 id={`${id}-title`} className="mb-12">
+      <h2 id={`${id}-title`} className="mb-8 sm:mb-12">
         <span className="block font-display text-5xl font-medium tracking-wide sm:text-6xl">
           {label}
         </span>

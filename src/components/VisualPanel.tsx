@@ -5,7 +5,8 @@ import { ExternalLink } from './ExternalLink.tsx'
 type Props = { profile: Profile }
 
 // PC では右半分に固定、スマホではページ先頭に置くビジュアル面。
-// 絵はスクロールに合わせて少しずつ上下に動き、全体が見えていく。
+// PC では、絵はスクロールに合わせて少しずつ上下に動き、全体が見えていく。
+// それより狭い画面では、本人（GitHub のアイコンと同じ範囲）を中心に映す。
 export function VisualPanel({ profile }: Props) {
   const ref = useScrollProgress<HTMLElement>()
   const lines = profile.catchcopy.split('、')
@@ -13,20 +14,20 @@ export function VisualPanel({ profile }: Props) {
     <aside
       ref={ref}
       data-visual
-      className="relative h-[88svh] overflow-hidden bg-orange [--scroll:0.25] lg:fixed lg:top-0 lg:right-0 lg:h-svh lg:w-1/2"
+      className="visual-panel relative h-[88svh] overflow-hidden bg-orange [--scroll:0.25] lg:fixed lg:top-0 lg:right-0 lg:h-svh lg:w-1/2"
     >
       <img
         src={profile.avatar.src}
         alt={profile.avatar.alt}
         width={810}
         height={1280}
-        className="absolute inset-0 size-full scale-105 object-cover [object-position:50%_calc(var(--scroll)*100%)]"
+        className="visual-focus absolute inset-0 size-full scale-105 object-cover lg:[object-position:50%_calc(var(--scroll)*100%)]"
       />
       <div
         aria-hidden="true"
         className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-cream/80 to-transparent"
       />
-      <p className="vertical absolute top-8 right-6 text-sm font-medium text-ink sm:right-10 sm:text-base">
+      <p className="visual-catch vertical absolute top-8 right-6 text-sm font-medium text-ink sm:right-10 sm:text-base">
         {lines.map((line, i) => (
           <span key={line} className="block">
             {line}
