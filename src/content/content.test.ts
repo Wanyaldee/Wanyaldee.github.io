@@ -110,6 +110,13 @@ describe('cases', () => {
     expect(agent.title).toBe('Awaji-Empire-Agent（700人規模コミュニティ基盤）')
   })
 
+  it('CASE 01 で「ありがとう」と言ったのは仲間（運営チーム）で、ES と事実がそろう', () => {
+    const agent = findCase('awaji-agent')
+    if (agent.kind !== 'timeline') throw new Error('timeline expected')
+    expect(agent.result).toContain('仲間から')
+    expect(agent.result).not.toContain('利用者から')
+  })
+
   it('CASE 01 は承認済みの3コミットへリンクする', () => {
     const agent = findCase('awaji-agent')
     if (agent.kind !== 'timeline') throw new Error('timeline expected')
